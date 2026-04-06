@@ -13,9 +13,10 @@ import { Input } from "@/components/ui/input";
 export default function Courses() {
   const [category, setCategory] = useState<string | null>(null);
   
+  const params = category ? { category } : {};
   const { data: coursesData, isLoading } = useListCourses(
-    { category },
-    { query: { queryKey: getListCoursesQueryKey({ category }) } }
+    params,
+    { query: { queryKey: getListCoursesQueryKey(params) } }
   );
 
   const categories = ["All", "Web Development", "Python", "AI", "DevOps"];
