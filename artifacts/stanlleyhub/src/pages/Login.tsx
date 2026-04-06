@@ -13,6 +13,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { motion } from "framer-motion";
+import { ShieldCheck, Zap, Users, ArrowRight } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -62,61 +64,129 @@ export default function Login() {
   };
 
   return (
-    <PublicLayout>
-      <div className="container mx-auto px-4 py-24 flex justify-center items-center min-h-[calc(100vh-200px)]">
-        <Card className="w-full max-w-md shadow-lg border-border/50">
-          <CardHeader className="space-y-1 text-center mb-4">
-            <CardTitle className="text-3xl font-bold tracking-tight">Welcome back</CardTitle>
-            <CardDescription className="text-muted-foreground">
-              Enter your credentials to access your portal
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="name@example.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" placeholder="••••••••" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" className="w-full h-11 text-base" disabled={loginUser.isPending}>
-                  {loginUser.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  Sign In
+    <div className="auth-split-container">
+      {/* Left Panel: High-Impact Brand Imagery */}
+      <div className="auth-left-panel brand-gradient">
+        <div className="absolute inset-0 opacity-20 bg-[url('/hero_background.jpg')] bg-cover bg-center mix-blend-overlay" />
+        
+        <div className="relative z-10">
+          <Link href="/" className="inline-block mb-12">
+            <h1 className="text-3xl font-black tracking-tighter text-white">Stanlley<span className="text-secondary">Hub</span></h1>
+          </Link>
+          <div className="space-y-8 max-w-lg">
+            <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter leading-none text-white">
+              The Hub for <br/>
+              <span className="text-secondary">Elite Engineers.</span>
+            </h2>
+            <p className="text-xl text-white/70 font-semibold leading-tight">
+              Access your personalized learning portal and track your engineering journey.
+            </p>
+          </div>
+        </div>
+
+        <div className="relative z-10 glass-panel">
+          <div className="flex items-center gap-6 mb-8 border-b border-white/10 pb-8">
+            <div className="h-16 w-16 rounded-2xl bg-secondary/20 flex items-center justify-center">
+              <Users className="h-8 w-8 text-secondary" />
+            </div>
+            <div>
+              <p className="text-3xl font-black text-white">1,200+</p>
+              <p className="text-xs font-black uppercase tracking-widest text-white/50">Active Engineers</p>
+            </div>
+          </div>
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <div className="h-2 w-2 rounded-full bg-secondary" />
+              <p className="text-sm font-bold text-white/80">Real-time industry projects</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="h-2 w-2 rounded-full bg-secondary" />
+              <p className="text-sm font-bold text-white/80">Direct mentorship from Lead Architects</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="h-2 w-2 rounded-full bg-secondary" />
+              <p className="text-sm font-bold text-white/80">Production-grade stack training</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Panel: Focused Form */}
+      <div className="auth-right-panel py-20">
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md px-4"
+        >
+          <div className="mb-10 lg:hidden text-center">
+            <h1 className="text-2xl font-black tracking-tighter text-primary">Stanlley<span className="text-secondary">Hub</span></h1>
+          </div>
+
+          <div className="mb-12">
+            <h3 className="text-4xl font-bold text-primary tracking-tighter mb-4">Welcome back.</h3>
+            <p className="text-muted-foreground font-semibold text-lg">Enter your details to access the portal.</p>
+          </div>
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-black uppercase tracking-widest text-muted-foreground">Email Address</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="your@email.com" 
+                        className="h-14 border-black/10 focus:border-primary px-6 rounded-xl text-base" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex justify-between items-center">
+                      <FormLabel className="text-xs font-black uppercase tracking-widest text-muted-foreground">Password</FormLabel>
+                      <Link href="/forgot-password" title="Coming soon" className="text-[10px] font-black uppercase tracking-widest text-secondary hover:underline">Forgot?</Link>
+                    </div>
+                    <FormControl>
+                      <Input 
+                        type="password" 
+                        placeholder="••••••••" 
+                        className="h-14 border-black/10 focus:border-primary px-6 rounded-xl text-base" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="pt-4">
+                <Button type="submit" className="w-full h-16 text-lg font-black uppercase tracking-widest rounded-full shadow-2xl shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98]" disabled={loginUser.isPending}>
+                  {loginUser.isPending ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
+                  Access Portal
                 </Button>
-              </form>
-            </Form>
-          </CardContent>
-          <CardFooter className="flex justify-center border-t p-6">
-            <p className="text-sm text-muted-foreground">
-              Don't have an account?{" "}
-              <Link href="/register" className="text-primary hover:underline font-medium">
-                Register here
+              </div>
+            </form>
+          </Form>
+
+          <div className="mt-12 text-center pt-8 border-t border-black/5">
+            <p className="text-sm font-bold text-muted-foreground">
+              New to the Hub?{" "}
+              <Link href="/register" className="text-primary hover:underline font-black uppercase tracking-widest ml-2">
+                Join Now <ArrowRight className="inline-block h-4 w-4 ml-1" />
               </Link>
             </p>
-          </CardFooter>
-        </Card>
+          </div>
+        </motion.div>
       </div>
-    </PublicLayout>
+    </div>
   );
 }
