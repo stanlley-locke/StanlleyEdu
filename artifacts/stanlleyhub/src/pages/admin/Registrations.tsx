@@ -125,35 +125,61 @@ export default function AdminRegistrations() {
                       </TableCell>
                       <TableCell>
                         <Badge variant="outline" className={
-                          reg.status === 'approved' ? 'border-green-500 text-green-600' :
-                          reg.status === 'rejected' ? 'border-red-500 text-red-600' :
-                          'border-yellow-500 text-yellow-600'
+                          reg.status === 'approved' ? 'border-green-500/50 text-green-400 bg-green-500/10' :
+                          reg.status === 'rejected' ? 'border-red-500/50 text-red-400 bg-red-500/10' :
+                          'border-yellow-500/50 text-yellow-400 bg-yellow-500/10'
                         }>
                           {reg.status}
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            {reg.status !== 'approved' && (
-                              <DropdownMenuItem className="text-green-600" onClick={() => handleUpdate(reg.id, 'approved', 'paid')}>
-                                <CheckCircle className="mr-2 h-4 w-4" /> Approve & Mark Paid
-                              </DropdownMenuItem>
-                            )}
-                            {reg.status !== 'rejected' && (
-                              <DropdownMenuItem className="text-red-600" onClick={() => handleUpdate(reg.id, 'rejected')}>
-                                <XCircle className="mr-2 h-4 w-4" /> Reject Application
-                              </DropdownMenuItem>
-                            )}
-                          </DropdownMenuContent>
-                        </DropdownMenu>
+                        <div className="flex justify-end gap-2">
+                          {reg.status === 'pending' && (
+                            <>
+                              <Button 
+                                variant="outline" 
+                                size="sm" 
+                                className="h-8 border-green-500/50 text-green-400 hover:bg-green-500/10 hover:text-green-300"
+                                onClick={() => handleUpdate(reg.id, 'approved', 'paid')}
+                                disabled={updateRegistration.isPending}
+                              >
+                                <CheckCircle className="h-3.5 w-3.5 mr-1" />
+                                Approve
+                              </Button>
+                              <Button 
+                                variant="outline" 
+                                size="sm" 
+                                className="h-8 border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                                onClick={() => handleUpdate(reg.id, 'rejected')}
+                                disabled={updateRegistration.isPending}
+                              >
+                                <XCircle className="h-3.5 w-3.5 mr-1" />
+                                Reject
+                              </Button>
+                            </>
+                          )}
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="icon" className="h-8 w-8">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                              <DropdownMenuSeparator />
+                              {reg.status !== 'approved' && (
+                                <DropdownMenuItem className="text-green-400" onClick={() => handleUpdate(reg.id, 'approved', 'paid')}>
+                                  <CheckCircle className="mr-2 h-4 w-4" /> Approve & Mark Paid
+                                </DropdownMenuItem>
+                              )}
+                              {reg.status !== 'rejected' && (
+                                <DropdownMenuItem className="text-red-400" onClick={() => handleUpdate(reg.id, 'rejected')}>
+                                  <XCircle className="mr-2 h-4 w-4" /> Reject Application
+                                </DropdownMenuItem>
+                              )}
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))

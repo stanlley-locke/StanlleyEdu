@@ -31,7 +31,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen flex bg-muted/30">
+    <div className="dark min-h-screen flex bg-background">
       <aside className="hidden md:flex w-64 flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border">
         <div className="p-6 border-b border-sidebar-border">
           <Link href="/" className="font-bold text-xl text-sidebar-primary">StanlleyHub</Link>

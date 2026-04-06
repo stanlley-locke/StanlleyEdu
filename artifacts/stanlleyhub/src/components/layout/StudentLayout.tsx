@@ -29,9 +29,9 @@ export function StudentLayout({ children }: { children: ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen flex bg-muted/30">
+    <div className="dark min-h-screen flex bg-background text-foreground">
       {/* Sidebar for Desktop */}
-      <aside className="hidden md:flex w-64 flex-col bg-card border-r">
+      <aside className="hidden md:flex w-64 flex-col bg-card border-r border-border">
         <div className="p-6 border-b">
           <Link href="/" className="font-bold text-xl text-primary">StanlleyHub</Link>
           <p className="text-xs text-muted-foreground mt-1">Student Portal</p>
@@ -41,8 +41,8 @@ export function StudentLayout({ children }: { children: ReactNode }) {
             <Link key={item.href} href={item.href}>
               <div className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
                 location === item.href 
-                  ? "bg-primary/10 text-primary font-medium" 
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-primary text-primary-foreground font-medium shadow-sm shadow-primary/20" 
+                  : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
               }`}>
                 <item.icon className="h-5 w-5" />
                 {item.label}

@@ -15,6 +15,10 @@ export default function StudentCertificate() {
     query: { queryKey: getGetMyProfileQueryKey() }
   });
 
+  const handleDownload = () => {
+    window.print();
+  };
+
   const isLoading = loadingProgress || loadingProfile;
 
   if (isLoading) {
@@ -45,37 +49,58 @@ export default function StudentCertificate() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
+            className="print:shadow-none print:border-none"
           >
-            <Card className="overflow-hidden border-2 border-primary/20 shadow-xl">
-              <div className="bg-gradient-to-r from-primary/10 via-background to-primary/10 p-12 text-center border-b border-border/50 relative">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-background to-background" />
-                <Award className="h-20 w-20 text-primary mx-auto mb-6 relative z-10" />
-                <h2 className="text-xl text-muted-foreground tracking-[0.2em] uppercase font-medium mb-4 relative z-10">Certificate of Completion</h2>
-                <h3 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 relative z-10">{profile?.firstName} {profile?.lastName}</h3>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto relative z-10">
-                  Has successfully completed the comprehensive <strong className="text-foreground">{progress?.currentCourse || "Software Engineering Bootcamp"}</strong> program at StanlleyHub.
+            <Card className="overflow-hidden border-2 border-primary/20 shadow-xl print:shadow-none print:border-none print:bg-white print:text-black">
+              <div id="certificate-content" className="bg-gradient-to-r from-primary/10 via-background to-primary/10 p-12 text-center border-b border-border/50 relative print:bg-white print:from-white print:to-white print:p-8">
+                <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-background to-background print:hidden" />
+                <Award className="h-20 w-20 text-primary mx-auto mb-6 relative z-10 print:text-black" />
+                <h2 className="text-xl text-muted-foreground tracking-[0.2em] uppercase font-medium mb-4 relative z-10 print:text-gray-500">Certificate of Completion</h2>
+                <h3 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 relative z-10 print:text-black">{profile?.firstName} {profile?.lastName}</h3>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto relative z-10 print:text-gray-600">
+                  Has successfully completed the comprehensive <strong className="text-foreground print:text-black">{progress?.currentCourse || "Software Engineering Bootcamp"}</strong> program at StanlleyHub.
                 </p>
                 <div className="mt-12 flex justify-center gap-12 text-left relative z-10">
-                  <div>
-                    <div className="border-b border-primary/30 w-32 mb-2 pb-2">
-                      <span className="font-serif italic text-lg block text-center">Stanlley Locke</span>
+                  <div className="text-center">
+                    <div className="border-b border-primary/30 w-48 mb-2 pb-2 print:border-black">
+                      <span className="font-serif italic text-xl block text-center">Stanlley Locke</span>
                     </div>
-                    <div className="text-sm text-muted-foreground text-center uppercase tracking-wider">Instructor</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wider print:text-gray-500">Instructor</div>
                   </div>
-                  <div>
-                    <div className="border-b border-primary/30 w-32 mb-2 pb-2">
-                      <span className="font-serif text-lg block text-center">{new Date().toLocaleDateString()}</span>
+                  <div className="text-center">
+                    <div className="border-b border-primary/30 w-48 mb-2 pb-2 print:border-black">
+                      <span className="font-serif text-xl block text-center">{new Date().toLocaleDateString()}</span>
                     </div>
-                    <div className="text-sm text-muted-foreground text-center uppercase tracking-wider">Date</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wider print:text-gray-500">Date</div>
                   </div>
                 </div>
               </div>
-              <CardContent className="bg-card flex justify-center py-6">
-                <Button className="gap-2" size="lg">
+              <CardContent className="bg-card flex justify-center py-6 print:hidden">
+                <Button className="gap-2" size="lg" onClick={handleDownload}>
                   <Download className="h-4 w-4" /> Download PDF
                 </Button>
               </CardContent>
             </Card>
+            
+            <style dangerouslySetInnerHTML={{ __html: `
+              @media print {
+                body * { visibility: hidden; }
+                #certificate-content, #certificate-content * { visibility: visible; }
+                #certificate-content {
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  background: white !important;
+                  border: 2px solid #000;
+                  padding: 40px;
+                }
+              }
+            `}} />
           </motion.div>
         ) : (
           <Card className="text-center py-20 border-dashed bg-muted/30">
