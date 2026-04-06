@@ -1,6 +1,16 @@
 import { db } from "./index";
 import { usersTable, coursesTable, courseModulesTable } from "./schema";
 import { eq } from "drizzle-orm";
+import { createHash, randomBytes } from "crypto";
+
+function hashPassword(password: string, salt: string): string {
+  return createHash("sha256").update(password + salt).digest("hex");
+}
+
+function getSecurePassword(password: string): string {
+  const salt = randomBytes(16).toString("hex");
+  return hashPassword(password, salt) + ":" + salt;
+}
 
 async function seed() {
   console.log("🌱 Starting database seeding...");
@@ -12,7 +22,7 @@ async function seed() {
     lastName: "Admin",
     email: "admin@stanlleyedu.com",
     phone: "+254700000000",
-    passwordHash: "stanlleylocke", // In a real app, use bcrypt
+    passwordHash: getSecurePassword("stanlleylocke"),
     role: "admin",
     status: "active",
     bio: "Lead administrator and platform architect.",
@@ -24,7 +34,7 @@ async function seed() {
       lastName: "Doe",
       email: "john@example.com",
       phone: "+254711111111",
-      passwordHash: "john2026",
+      passwordHash: getSecurePassword("john2026"),
       role: "student",
       status: "active",
     },
@@ -33,7 +43,7 @@ async function seed() {
       lastName: "Smith",
       email: "jane@example.com",
       phone: "+254722222222",
-      passwordHash: "jane2026",
+      passwordHash: getSecurePassword("jane2026"),
       role: "student",
       status: "active",
     },
