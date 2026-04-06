@@ -3,13 +3,23 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: StanlleyHub Education Platform API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: auth
+    description: Authentication operations
+  - name: students
+    description: Student management
+  - name: courses
+    description: Course management
+  - name: registrations
+    description: Registration management
+  - name: admin
+    description: Admin operations
 paths:
   /healthz:
     get:
@@ -24,6 +34,447 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /auth/register:
+    post:
+      operationId: registerStudent
+      tags: [auth]
+      summary: Register a new student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterStudentBody"
+      responses:
+        "201":
+          description: Student registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Email already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/login:
+    post:
+      operationId: loginUser
+      tags: [auth]
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginBody"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/logout:
+    post:
+      operationId: logoutUser
+      tags: [auth]
+      summary: Logout user
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+
+  /auth/me:
+    get:
+      operationId: getMe
+      tags: [auth]
+      summary: Get current user
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /students:
+    get:
+      operationId: listStudents
+      tags: [students]
+      summary: List all students (admin)
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: search
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: page
+          in: query
+          schema:
+            type: ["integer", "null"]
+        - name: limit
+          in: query
+          schema:
+            type: ["integer", "null"]
+      responses:
+        "200":
+          description: List of students
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentListResponse"
+
+  /students/{id}:
+    get:
+      operationId: getStudent
+      tags: [students]
+      summary: Get student by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Student details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentDetail"
+        "404":
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    patch:
+      operationId: updateStudent
+      tags: [students]
+      summary: Update student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStudentBody"
+      responses:
+        "200":
+          description: Updated student
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Student"
+
+  /students/me/profile:
+    get:
+      operationId: getMyProfile
+      tags: [students]
+      summary: Get current student profile
+      responses:
+        "200":
+          description: Student profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentDetail"
+
+  /students/me/progress:
+    get:
+      operationId: getMyProgress
+      tags: [students]
+      summary: Get current student progress
+      responses:
+        "200":
+          description: Student progress
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentProgress"
+
+  /courses:
+    get:
+      operationId: listCourses
+      tags: [courses]
+      summary: List all courses
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: category
+          in: query
+          schema:
+            type: ["string", "null"]
+      responses:
+        "200":
+          description: List of courses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Course"
+
+    post:
+      operationId: createCourse
+      tags: [courses]
+      summary: Create a new course (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCourseBody"
+      responses:
+        "201":
+          description: Course created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+
+  /courses/{id}:
+    get:
+      operationId: getCourse
+      tags: [courses]
+      summary: Get course by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Course details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseDetail"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    patch:
+      operationId: updateCourse
+      tags: [courses]
+      summary: Update course (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCourseBody"
+      responses:
+        "200":
+          description: Updated course
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+
+    delete:
+      operationId: deleteCourse
+      tags: [courses]
+      summary: Delete course (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+
+  /registrations:
+    get:
+      operationId: listRegistrations
+      tags: [registrations]
+      summary: List registrations (admin)
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: courseId
+          in: query
+          schema:
+            type: ["integer", "null"]
+        - name: page
+          in: query
+          schema:
+            type: ["integer", "null"]
+        - name: limit
+          in: query
+          schema:
+            type: ["integer", "null"]
+      responses:
+        "200":
+          description: List of registrations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegistrationListResponse"
+
+    post:
+      operationId: createRegistration
+      tags: [registrations]
+      summary: Create a new registration (public enrollment)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRegistrationBody"
+      responses:
+        "201":
+          description: Registration created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registration"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /registrations/{id}:
+    get:
+      operationId: getRegistration
+      tags: [registrations]
+      summary: Get registration by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Registration details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registration"
+
+    patch:
+      operationId: updateRegistration
+      tags: [registrations]
+      summary: Update registration status (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRegistrationBody"
+      responses:
+        "200":
+          description: Updated registration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registration"
+
+  /admin/stats:
+    get:
+      operationId: getAdminStats
+      tags: [admin]
+      summary: Get admin dashboard stats
+      responses:
+        "200":
+          description: Dashboard statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStats"
+
+  /admin/recent-activity:
+    get:
+      operationId: getRecentActivity
+      tags: [admin]
+      summary: Get recent activity feed
+      responses:
+        "200":
+          description: Recent activity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityItem"
+
+  /admin/revenue:
+    get:
+      operationId: getRevenueData
+      tags: [admin]
+      summary: Get revenue breakdown
+      responses:
+        "200":
+          description: Revenue data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RevenueData"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +485,555 @@ components:
       required:
         - status
 
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    MessageResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+
+    RegisterStudentBody:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+        courseId:
+          type: ["integer", "null"]
+      required:
+        - firstName
+        - lastName
+        - email
+        - phone
+        - password
+
+    LoginBody:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: ["string", "null"]
+      required:
+        - email
+        - password
+
+    AuthResponse:
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/UserInfo"
+        token:
+          type: string
+      required:
+        - user
+        - token
+
+    UserInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        avatarUrl:
+          type: ["string", "null"]
+      required:
+        - id
+        - email
+        - firstName
+        - lastName
+        - role
+
+    Student:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        status:
+          type: string
+        paymentStatus:
+          type: string
+        avatarUrl:
+          type: ["string", "null"]
+        enrolledAt:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - phone
+        - status
+        - paymentStatus
+        - createdAt
+
+    StudentDetail:
+      allOf:
+        - $ref: "#/components/schemas/Student"
+        - type: object
+          properties:
+            registrations:
+              type: array
+              items:
+                $ref: "#/components/schemas/Registration"
+            progress:
+              type: ["number", "null"]
+            bio:
+              type: ["string", "null"]
+
+    StudentListResponse:
+      type: object
+      properties:
+        students:
+          type: array
+          items:
+            $ref: "#/components/schemas/Student"
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+      required:
+        - students
+        - total
+        - page
+        - limit
+
+    UpdateStudentBody:
+      type: object
+      properties:
+        firstName:
+          type: ["string", "null"]
+        lastName:
+          type: ["string", "null"]
+        phone:
+          type: ["string", "null"]
+        status:
+          type: ["string", "null"]
+        paymentStatus:
+          type: ["string", "null"]
+        bio:
+          type: ["string", "null"]
+
+    StudentProgress:
+      type: object
+      properties:
+        studentId:
+          type: integer
+        totalModules:
+          type: integer
+        completedModules:
+          type: integer
+        progressPercent:
+          type: number
+        currentCourse:
+          type: ["string", "null"]
+        daysRemaining:
+          type: ["integer", "null"]
+        certificateEarned:
+          type: boolean
+      required:
+        - studentId
+        - totalModules
+        - completedModules
+        - progressPercent
+        - certificateEarned
+
+    Course:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        shortDescription:
+          type: string
+        category:
+          type: string
+        duration:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        price:
+          type: number
+        commitmentFee:
+          type: number
+        maxStudents:
+          type: integer
+        enrolledCount:
+          type: integer
+        status:
+          type: string
+        imageUrl:
+          type: ["string", "null"]
+        instructorName:
+          type: string
+        level:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - title
+        - slug
+        - description
+        - shortDescription
+        - category
+        - duration
+        - startDate
+        - price
+        - commitmentFee
+        - maxStudents
+        - enrolledCount
+        - status
+        - instructorName
+        - level
+        - createdAt
+
+    CourseDetail:
+      allOf:
+        - $ref: "#/components/schemas/Course"
+        - type: object
+          properties:
+            modules:
+              type: array
+              items:
+                $ref: "#/components/schemas/CourseModule"
+            technologies:
+              type: array
+              items:
+                type: string
+            outcomes:
+              type: array
+              items:
+                type: string
+
+    CourseModule:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        order:
+          type: integer
+        duration:
+          type: string
+      required:
+        - id
+        - title
+        - description
+        - order
+        - duration
+
+    CreateCourseBody:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        shortDescription:
+          type: string
+        category:
+          type: string
+        duration:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        price:
+          type: number
+        commitmentFee:
+          type: number
+        maxStudents:
+          type: integer
+        imageUrl:
+          type: ["string", "null"]
+        instructorName:
+          type: string
+        level:
+          type: string
+        technologies:
+          type: array
+          items:
+            type: string
+        outcomes:
+          type: array
+          items:
+            type: string
+      required:
+        - title
+        - description
+        - shortDescription
+        - category
+        - duration
+        - startDate
+        - price
+        - commitmentFee
+        - maxStudents
+        - instructorName
+        - level
+
+    UpdateCourseBody:
+      type: object
+      properties:
+        title:
+          type: ["string", "null"]
+        description:
+          type: ["string", "null"]
+        shortDescription:
+          type: ["string", "null"]
+        status:
+          type: ["string", "null"]
+        startDate:
+          type: ["string", "null"]
+        endDate:
+          type: ["string", "null"]
+        price:
+          type: ["number", "null"]
+        commitmentFee:
+          type: ["number", "null"]
+        maxStudents:
+          type: ["integer", "null"]
+        imageUrl:
+          type: ["string", "null"]
+
+    Registration:
+      type: object
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        courseId:
+          type: integer
+        status:
+          type: string
+        paymentStatus:
+          type: string
+        paymentReference:
+          type: ["string", "null"]
+        amountPaid:
+          type: ["number", "null"]
+        notes:
+          type: ["string", "null"]
+        registeredAt:
+          type: string
+        studentName:
+          type: ["string", "null"]
+        studentEmail:
+          type: ["string", "null"]
+        courseName:
+          type: ["string", "null"]
+      required:
+        - id
+        - studentId
+        - courseId
+        - status
+        - paymentStatus
+        - registeredAt
+
+    RegistrationListResponse:
+      type: object
+      properties:
+        registrations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Registration"
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+      required:
+        - registrations
+        - total
+        - page
+        - limit
+
+    CreateRegistrationBody:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        courseId:
+          type: integer
+        paymentReference:
+          type: ["string", "null"]
+        notes:
+          type: ["string", "null"]
+      required:
+        - firstName
+        - lastName
+        - email
+        - phone
+        - courseId
+
+    UpdateRegistrationBody:
+      type: object
+      properties:
+        status:
+          type: ["string", "null"]
+        paymentStatus:
+          type: ["string", "null"]
+        paymentReference:
+          type: ["string", "null"]
+        amountPaid:
+          type: ["number", "null"]
+        notes:
+          type: ["string", "null"]
+
+    AdminStats:
+      type: object
+      properties:
+        totalStudents:
+          type: integer
+        activeStudents:
+          type: integer
+        totalRegistrations:
+          type: integer
+        pendingRegistrations:
+          type: integer
+        totalCourses:
+          type: integer
+        activeCourses:
+          type: integer
+        totalRevenue:
+          type: number
+        monthlyRevenue:
+          type: number
+        completionRate:
+          type: number
+        newStudentsThisMonth:
+          type: integer
+      required:
+        - totalStudents
+        - activeStudents
+        - totalRegistrations
+        - pendingRegistrations
+        - totalCourses
+        - activeCourses
+        - totalRevenue
+        - monthlyRevenue
+        - completionRate
+        - newStudentsThisMonth
+
+    ActivityItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        description:
+          type: string
+        studentName:
+          type: ["string", "null"]
+        courseName:
+          type: ["string", "null"]
+        timestamp:
+          type: string
+      required:
+        - id
+        - type
+        - description
+        - timestamp
+
+    RevenueData:
+      type: object
+      properties:
+        totalRevenue:
+          type: number
+        monthlyBreakdown:
+          type: array
+          items:
+            $ref: "#/components/schemas/MonthlyRevenue"
+        byStatus:
+          type: array
+          items:
+            $ref: "#/components/schemas/StatusRevenue"
+      required:
+        - totalRevenue
+        - monthlyBreakdown
+        - byStatus
+
+    MonthlyRevenue:
+      type: object
+      properties:
+        month:
+          type: string
+        amount:
+          type: number
+        registrations:
+          type: integer
+      required:
+        - month
+        - amount
+        - registrations
+
+    StatusRevenue:
+      type: object
+      properties:
+        status:
+          type: string
+        amount:
+          type: number
+        count:
+          type: integer
+      required:
+        - status
+        - amount
+        - count
