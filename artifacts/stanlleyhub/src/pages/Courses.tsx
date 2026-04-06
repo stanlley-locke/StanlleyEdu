@@ -76,7 +76,7 @@ export default function Courses() {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(coursesData ?? []).map((course, i) => (
+            {(Array.isArray(coursesData) ? coursesData : []).map((course, i) => (
               <motion.div
                 key={course.id}
                 initial={{ opacity: 0, y: 20 }}
