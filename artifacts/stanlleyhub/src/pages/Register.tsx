@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useCreateRegistration, useListCourses, getListCoursesQueryKey } from "@workspace/api-client-react";
-import { useLocation, useSearch } from "wouter";
+import { useLocation, useSearch, Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle2, ChevronRight, ChevronLeft } from "lucide-react";
 import { z } from "zod";
@@ -86,7 +86,7 @@ export default function Register() {
         onError: (error) => {
           toast({
             title: "Submission Failed",
-            description: error.error || "An error occurred. Please try again.",
+            description: (error as any).error || "An error occurred. Please try again.",
             variant: "destructive",
           });
         },

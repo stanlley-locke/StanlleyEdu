@@ -11,16 +11,16 @@ import { Search, MoreHorizontal } from "lucide-react";
 import { useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
-import { useDebounce } from "@/hooks/use-mobile"; // assuming simple debounce or we implement it
+import { useEffect } from "react";
 
 function useLocalDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
-  useState(() => {
+  useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
     return () => clearTimeout(handler);
-  }); // Note: useEffect would be correct, but let's just do an inline fix
+  }, [value, delay]);
   return debouncedValue;
 }
 
