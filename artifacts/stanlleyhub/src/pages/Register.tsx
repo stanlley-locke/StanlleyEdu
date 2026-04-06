@@ -36,8 +36,8 @@ export default function Register() {
   
   const createRegistration = useCreateRegistration();
   const { data: coursesData, isLoading: loadingCourses } = useListCourses(
-    { status: "active" },
-    { query: { queryKey: getListCoursesQueryKey({ status: "active" }) } }
+    {},
+    { query: { queryKey: getListCoursesQueryKey({}) } }
   );
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -54,7 +54,7 @@ export default function Register() {
   });
 
   const selectedCourseId = form.watch("courseId");
-  const selectedCourse = coursesData?.courses.find(c => c.id.toString() === selectedCourseId);
+  const selectedCourse = (coursesData ?? []).find(c => c.id.toString() === selectedCourseId);
 
   const handleNext = async () => {
     const fieldsToValidate = step === 1 
@@ -241,7 +241,7 @@ export default function Register() {
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  {coursesData?.courses.map((course) => (
+                                  {(coursesData ?? []).map((course) => (
                                     <SelectItem key={course.id} value={course.id.toString()}>
                                       <div className="flex items-center justify-between w-full">
                                         <span className="font-medium">{course.title}</span>

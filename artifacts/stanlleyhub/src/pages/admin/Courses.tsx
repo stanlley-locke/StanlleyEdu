@@ -78,14 +78,14 @@ export default function AdminCourses() {
                       <TableCell><Skeleton className="h-8 w-8 ml-auto" /></TableCell>
                     </TableRow>
                   ))
-                ) : data?.courses.length === 0 ? (
+                ) : (data ?? []).length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
                       No courses found.
                     </TableCell>
                   </TableRow>
                 ) : (
-                  data?.courses.map((course) => (
+                  (data ?? []).map((course) => (
                     <TableRow key={course.id}>
                       <TableCell className="font-medium">
                         <div className="line-clamp-1">{course.title}</div>

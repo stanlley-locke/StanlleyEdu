@@ -14,8 +14,8 @@ export default function Courses() {
   const [category, setCategory] = useState<string | null>(null);
   
   const { data: coursesData, isLoading } = useListCourses(
-    { status: "active", category },
-    { query: { queryKey: getListCoursesQueryKey({ status: "active", category }) } }
+    { category },
+    { query: { queryKey: getListCoursesQueryKey({ category }) } }
   );
 
   const categories = ["All", "Web Development", "Python", "AI", "DevOps"];
@@ -68,14 +68,14 @@ export default function Courses() {
               </Card>
             ))}
           </div>
-        ) : coursesData?.courses.length === 0 ? (
+        ) : (coursesData ?? []).length === 0 ? (
           <div className="text-center py-20 bg-muted/20 rounded-xl border border-dashed">
             <h3 className="text-xl font-medium text-muted-foreground mb-2">No courses found</h3>
             <p className="text-muted-foreground">Check back later for new cohorts.</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coursesData?.courses.map((course, i) => (
+            {(coursesData ?? []).map((course, i) => (
               <motion.div
                 key={course.id}
                 initial={{ opacity: 0, y: 20 }}
