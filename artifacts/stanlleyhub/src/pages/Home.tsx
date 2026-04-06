@@ -250,10 +250,10 @@ export default function Home() {
 
               <div className="grid sm:grid-cols-2 gap-10 bg-white p-10 rounded-[3rem] border border-black/5 shadow-sm">
                 {[
-                  { icon: Terminal, title: "Senior Dev", desc: "Flask, Node.js, React, & DevOps" },
-                  { icon: Brain, title: "AI Builder", desc: "Custom Neural pipes & GPU tuning" }
-                ].map((skill, i) => (
-                  <div key={ SkillSelection_Skill_title_at_i } className="space-y-4">
+                  { id: "dev", icon: Terminal, title: "Senior Dev", desc: "Flask, Node.js, React, & DevOps" },
+                  { id: "ai", icon: Brain, title: "AI Builder", desc: "Custom Neural pipes & GPU tuning" }
+                ].map((skill) => (
+                  <div key={skill.id} className="space-y-4">
                     <div className="h-14 w-14 rounded-2xl bg-primary/5 flex items-center justify-center border border-black/5">
                       <skill.icon className="h-7 w-7 text-primary" />
                     </div>
