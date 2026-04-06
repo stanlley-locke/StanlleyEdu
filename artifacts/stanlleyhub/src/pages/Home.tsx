@@ -126,51 +126,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Phase Registry - Redesigned Cohort Section */}
-      <section className="relative py-24 bg-[#0a0a0a] overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+      {/* Clean Premium Cohort Section */}
+      <section className="relative py-32 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#00215E_1px,transparent_1px)] [background-size:20px_20px]" />
         
+        <div className="container mx-auto px-4 relative text-center mb-16">
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-primary">Cohort Engineering Registry</h2>
+        </div>
+
         <div className="container mx-auto px-4 relative">
-          <div className="flex flex-col md:flex-row gap-8 items-stretch">
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
             {/* Status Card */}
-            <div className="flex-1 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
-              <div className="flex items-center justify-between mb-8">
+            <div className="group bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
+              <div className="flex items-center justify-between mb-10">
                 <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Cohort Registry</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Schedule</span>
               </div>
-              <Calendar className="h-10 w-10 text-secondary mb-6" />
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Duration</h3>
-              <p className="text-4xl font-bold text-white tracking-tight">May — July</p>
-              <div className="mt-8 pt-8 border-t border-white/5 flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Status</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-secondary underline underline-offset-4">Registration Open</span>
+              <Calendar className="h-12 w-12 text-primary mb-8 group-hover:scale-110 transition-transform duration-500" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3 font-bold">Duration</h3>
+              <p className="text-4xl font-bold text-primary tracking-tight">May — July</p>
+              <div className="mt-10 pt-10 border-t border-black/5 flex items-center justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Status</span>
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full">Enrolling</span>
               </div>
             </div>
 
             {/* Investment Card */}
-            <div className="flex-1 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
-              <div className="flex items-center justify-between mb-8">
-                <ShieldCheck className="h-5 w-5 text-secondary" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Verification</span>
+            <div className="group bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
+              <div className="flex items-center justify-between mb-10">
+                <ShieldCheck className="h-6 w-6 text-secondary" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Secure</span>
               </div>
-              <ShieldCheck className="h-10 w-10 text-secondary mb-6" />
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Investment</h3>
-              <p className="text-4xl font-bold text-white tracking-tight">800 Ksh</p>
-              <p className="text-xs font-medium text-muted-foreground mt-2">One-time registration commitment fee.</p>
+              <ShieldCheck className="h-12 w-12 text-primary mb-8 group-hover:scale-110 transition-transform duration-500" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3 font-bold">Investment</h3>
+              <p className="text-4xl font-bold text-primary tracking-tight">800 Ksh</p>
+              <p className="text-xs font-medium text-muted-foreground mt-4 leading-relaxed font-bold">Secure your seat in the engineering intensive.</p>
             </div>
 
             {/* Methodology Card */}
-            <div className="flex-1 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
-              <div className="flex items-center justify-between mb-8">
-                <Zap className="h-5 w-5 text-secondary" />
+            <div className="group bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
+              <div className="flex items-center justify-between mb-10">
+                <Zap className="h-6 w-6 text-secondary" />
                 <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Labs</span>
               </div>
-              <Zap className="h-10 w-10 text-secondary mb-6" />
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Methodology</h3>
-              <p className="text-4xl font-bold text-white tracking-tight">100% Practical</p>
-              <div className="mt-8 flex gap-2">
-                {["Hands-on", "Deployable", "Real-world"].map((tag) => (
-                  <span key={tag} className="text-[10px] font-bold px-3 py-1 rounded-full border border-white/10 bg-white/5 text-muted-foreground uppercase">{tag}</span>
+              <Zap className="h-12 w-12 text-primary mb-8 group-hover:scale-110 transition-transform duration-500" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3 font-bold">Approach</h3>
+              <p className="text-4xl font-bold text-primary tracking-tight">100% Practical</p>
+              <div className="mt-10 flex flex-wrap gap-2">
+                {["Labs", "Projects", "Deploy"].map((tag) => (
+                  <span key={tag} className="text-[10px] font-bold px-4 py-1.5 rounded-full border border-primary/10 bg-primary/5 text-primary uppercase tracking-tighter">{tag}</span>
                 ))}
               </div>
             </div>
@@ -178,96 +182,103 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Meet Your Mentor Section */}
-      <section id="mentor" className="py-32 bg-card relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="order-2 lg:order-1">
-              <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-secondary mb-6">The Lead Engineer</h2>
-              <h3 className="text-4xl lg:text-5xl font-bold mb-8 tracking-tight">Stanlley Locke</h3>
-              <p className="text-xl text-primary font-medium mb-8 leading-relaxed">
-                Full-Stack Software Engineer · Systems Architect · AI & Web Platform Builder
-              </p>
-              <div className="space-y-8 text-muted-foreground leading-relaxed text-lg">
+      {/* Meet Your Mentor - Clean White Redesign */}
+      <section id="mentor" className="py-40 bg-[#FAFAFA] border-y border-black/5">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-24 items-start">
+            <div className="space-y-12">
+              <div>
+                <div className="h-1.5 w-12 bg-secondary mb-8 rounded-full" />
+                <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-secondary mb-4">Lead Engineer</h2>
+                <h3 className="text-5xl lg:text-7xl font-bold text-primary tracking-tighter leading-tight italic">Stanlley Locke</h3>
+              </div>
+              
+              <div className="space-y-8 text-xl text-muted-foreground leading-relaxed font-medium max-w-xl">
                 <p>
-                  I build production-grade web platforms, developer tooling, and embedded systems — not demos. My work focuses on reliable architecture, reproducible ML pipelines, and solutions that scale.
+                  Specializing in <span className="font-bold text-primary">production-grade architecture</span>, developer tooling, and custom AI frameworks.
                 </p>
-                <div className="grid grid-cols-2 gap-6 pt-4">
-                  <div>
-                    <h4 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                       <Code className="h-4 w-4 text-secondary" /> Senior Dev
-                    </h4>
-                    <p className="text-sm">Flask, FastAPI, Node.js, React, Flutter, and Docker.</p>
+                <p>
+                  I bridge the gap between abstract academic theory and <span className="font-bold text-primary">deployable engineering solutions</span> that scale.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-10">
+                {[
+                  { icon: Terminal, title: "Senior Dev", desc: "Flask, Node.js, React, Flutter & DevOps" },
+                  { icon: Brain, title: "AI Builder", desc: "Neural frameworks & GPU pipelines" }
+                ].map((skill, i) => (
+                  <div key={i} className="flex gap-5">
+                    <div className="h-12 w-12 rounded-2xl bg-white shadow-sm flex items-center justify-center shrink-0 border border-black/5">
+                      <skill.icon className="h-6 w-6 text-secondary" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-primary mb-1 uppercase tracking-widest text-[10px] tracking-[0.2em]">{skill.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed font-medium">{skill.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                       <Brain className="h-4 w-4 text-secondary" /> AI Builder
-                    </h4>
-                    <p className="text-sm">Custom NN frameworks, dataset pipelines, and GPU tuning.</p>
-                  </div>
-                </div>
-                
-                <div className="pt-8 flex flex-wrap gap-4">
-                  <Button variant="default" className="bg-primary hover:bg-primary/90" asChild>
-                    <a href="https://linkedin.com/in/stanlley-locke-6ba090380" target="_blank">View LinkedIn</a>
-                  </Button>
-                  <Button variant="outline" className="border-primary/20 flex items-center gap-2">
-                    <Download className="h-4 w-4" /> Download Resume
-                  </Button>
-                </div>
+                ))}
+              </div>
+
+              <div className="pt-8 flex flex-wrap gap-4">
+                <Button asChild size="lg" className="rounded-full px-10 bg-primary hover:bg-primary/95 text-white font-bold h-16 shadow-2xl shadow-primary/20 transition-all active:scale-95">
+                  <a href="https://linkedin.com/in/stanlley-locke-6ba090380" target="_blank">LinkedIn Profile</a>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="rounded-full px-10 border-primary/20 hover:bg-primary/[0.02] font-bold h-16 transition-all active:scale-95">
+                  <Link href="/resume.pdf" target="_blank">Download Resume</Link>
+                </Button>
               </div>
             </div>
             
-            <div className="order-1 lg:order-2 space-y-6">
-              <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-secondary mb-8">Projects</h2>
-              {[
-                { title: "StanleyHub", desc: "Realtime learning platform with modular content and SQLite.", link: "https://github.com/stanlley-locke/stanlleyhub" },
-                { title: "NeuralNetV2", desc: "Custom NN framework with GPU support and reproducible experiments.", link: "https://github.com/stanlley-locke/neuralnetv2" },
-                { title: "Coinium", desc: "Blockchain simulator and Telegram bot implementation.", link: "https://github.com/stanlley-locke/coinium" },
-              ].map((project, i) => (
-                <a 
-                  key={i} 
-                  href={project.link} 
-                  target="_blank"
-                  className="group block p-6 bg-background rounded-xl border border-border/50 hover:border-secondary transition-all hover:shadow-lg"
-                >
-                  <div className="flex justify-between items-start mb-2 font-bold text-lg group-hover:text-secondary transition-colors">
-                    {project.title}
-                    <Github className="h-5 w-5 opacity-50 group-hover:opacity-100" />
+            <div className="bg-white border border-black/5 rounded-[3rem] p-12 shadow-[0_20px_60px_rgba(0,0,0,0.04)]">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary mb-12 border-b border-black/5 pb-8">Featured Engineering Artifacts</h4>
+              <div className="space-y-12">
+                {[
+                  { title: "StanleyHub", desc: "Enterprise learning ecosystems with realtime Socket.IO integration and scalable SQLite architecture." },
+                  { title: "NeuralNetV2", desc: "Sophisticated neural training framework supporting GPU-accelerated reproducible experiments." },
+                  { title: "Coinium", desc: "Realtime blockchain simulation engine with integrated Telegram automation." },
+                ].map((project, i) => (
+                  <div key={i} className="group cursor-default">
+                    <div className="flex items-center justify-between mb-4">
+                      <h5 className="text-2xl font-bold text-primary group-hover:text-secondary transition-colors tracking-tight italic">{project.title}</h5>
+                      <div className="h-8 w-8 rounded-full border border-black/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                        <ExternalLink className="h-4 w-4 text-secondary" />
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed font-medium text-base">{project.desc}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">{project.desc}</p>
-                </a>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* The Core Stack */}
-      <section className="py-24 bg-background">
+      {/* The Core Stack - Clean Redesign */}
+      <section className="py-40 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl font-bold mb-6 tracking-tight">The 100% Practical Stack</h2>
-            <p className="text-xl text-muted-foreground">We don't teach "tutorials." we build production-ready systems using the industry's most in-demand tools.</p>
+          <div className="text-center max-w-3xl mx-auto mb-24">
+            <h2 className="text-sm font-extrabold uppercase tracking-[0.4em] text-secondary mb-6 italic">Engineering tracks</h2>
+            <h3 className="text-5xl font-bold mb-8 tracking-tighter text-primary">The 100% Practical Stack</h3>
+            <p className="text-xl text-muted-foreground font-medium">We don't teach "tutorials." We build production-ready systems using the industry's most in-demand tools.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Code, title: "Web Engineering", desc: "HTML5/CSS3, JS Frameworks (React, Next.js) & Node.js ecosystem." },
-              { icon: Server, title: "Python Masterclass", desc: "Python OOP, Flask, Django, SQLAlchemy, and Backend Architecture." },
-              { icon: Brain, title: "Agentic AI", desc: "LLMs, Neural Networks, Agentic AI, and Machine Learning Pipelines." },
-              { icon: Cpu, title: "Systems & DevOps", desc: "Linux, Docker, Server Deployment, Nginx, and PM2 automation." },
+              { icon: Code, title: "Web Engineering", desc: "Building scalable frontends and high-performance Node.js backends." },
+              { icon: Server, title: "Python/Backend", desc: "Mastering OOP, Flask, Django, and modern API architecture." },
+              { icon: Brain, title: "Agentic AI", desc: "Training LLMs and building custom agentic AI pipelines." },
+              { icon: Cpu, title: "DevOps & Cloud", desc: "Docker orchestration, server automation, and CI/CD mastery." },
             ].map((track, i) => (
               <motion.div 
                 key={i}
-                whileHover={{ y: -5 }}
-                className="bg-card p-8 rounded-2xl border border-border/50 hover:border-secondary/30 transition-all shadow-sm"
+                whileHover={{ y: -10 }}
+                className="bg-[#FDFDFD] p-10 rounded-[2.5rem] border border-black/5 hover:border-secondary/20 transition-all duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.02)]"
               >
-                <div className="h-14 w-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-8">
-                  <track.icon className="h-7 w-7 text-secondary" />
+                <div className="h-16 w-16 bg-primary/5 rounded-[1.25rem] flex items-center justify-center mb-10 transition-colors group-hover:bg-secondary/10">
+                  <track.icon className="h-8 w-8 text-secondary" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{track.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{track.desc}</p>
+                <h3 className="text-xl font-bold mb-4 text-primary tracking-tight">{track.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm font-medium">{track.desc}</p>
               </motion.div>
             ))}
           </div>
