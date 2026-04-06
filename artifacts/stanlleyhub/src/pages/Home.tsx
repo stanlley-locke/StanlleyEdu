@@ -182,10 +182,10 @@ export default function Home() {
             </div>
             
             <div className="order-1 lg:order-2 space-y-6">
-              <div className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">Selected Engineering Artifacts</div>
+              <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-secondary mb-8">Projects</h2>
               {[
-                { title: "StanleyHub", desc: "Learning platform with modular content, Socket.IO realtime, and SQLite.", link: "https://github.com/stanlley-locke/stanlleyhub" },
-                { title: "NeuralNetV2", desc: "Custom neural-network training framework with GPU support.", link: "https://github.com/stanlley-locke/neuralnetv2" },
+                { title: "StanleyHub", desc: "Realtime learning platform with modular content and SQLite.", link: "https://github.com/stanlley-locke/stanlleyhub" },
+                { title: "NeuralNetV2", desc: "Custom NN framework with GPU support and reproducible experiments.", link: "https://github.com/stanlley-locke/neuralnetv2" },
                 { title: "Coinium", desc: "Blockchain simulator and Telegram bot implementation.", link: "https://github.com/stanlley-locke/coinium" },
               ].map((project, i) => (
                 <a 
