@@ -30,7 +30,7 @@ export default function Home() {
         {/* Unsplash Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://unsplash.com/photos/gray-and-black-laptop-computer-on-surface-Im7lZjxeLhg?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
             alt="Engineering Background" 
             className="w-full h-full object-cover"
           />
