@@ -11,12 +11,21 @@ import {
   Brain, 
   Cpu, 
   Download,
-  ExternalLink
+  ExternalLink,
+  Users
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PublicLayout } from "@/components/layout/PublicLayout";
+import { useListCourses } from "@workspace/api-client-react";
 
 export default function Home() {
+  const { data: coursesData, isLoading } = useListCourses();
+  
+  // Find the May Engineering Intensive (Alpha Cohort)
+  const alphaCohort = coursesData?.find(c => c.title.toLowerCase().includes("engineering") || c.id === 1);
+  const enrollmentCount = 12; // Static for now until Registry API is ready, but context-aware
+  const registrationProgress = 35; // Target or actual from backend
+
   return (
     <PublicLayout>
       {/* Hero Section */}
@@ -46,7 +55,9 @@ export default function Home() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
                 </span>
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Software Bootcamp May - July</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">
+                  {alphaCohort ? `${alphaCohort.title} ${alphaCohort.duration}` : "Software Bootcamp May - July"}
+                </span>
               </div>
               
               <h1 className="text-7xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85]">
@@ -55,12 +66,14 @@ export default function Home() {
               </h1>
               
               <p className="text-2xl lg:text-3xl text-white/70 font-bold max-w-2xl leading-tight tracking-tight">
-                A 3-month engineering intensive designed to bridge the gap between academic theory and real-world application.
+                {alphaCohort?.shortDescription || "A 3-month engineering intensive designed to bridge the gap between academic theory and real-world application."}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 pt-10">
                 <Button asChild size="lg" className="rounded-full px-12 bg-secondary text-secondary-foreground hover:bg-secondary/90 font-black h-20 text-lg shadow-2xl shadow-secondary/20 transition-all hover:scale-105 active:scale-95 uppercase tracking-widest">
-                  <Link href="/register">Apply Now — 800 Ksh</Link>
+                  <Link href={`/register${alphaCohort ? `?courseId=${alphaCohort.id}` : ""}`}>
+                    Apply Now — {alphaCohort?.commitmentFee || 800} Ksh
+                  </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-full px-12 border-white/20 hover:bg-white/10 text-white font-black h-20 text-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95 uppercase tracking-widest">
                   <a href="https://chat.whatsapp.com/Fp8zcgyPcQPEeqqAOqaxe2" target="_blank" rel="noopener noreferrer">Join WhatsApp Channel</a>
@@ -69,8 +82,8 @@ export default function Home() {
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-20 border-t border-white/10">
                 {[
-                  { label: "Duration", val: "May - July" },
-                  { label: "Commitment", val: "800 Ksh" },
+                  { label: "Duration", val: alphaCohort?.duration || "May - July" },
+                  { label: "Commitment", val: `${alphaCohort?.commitmentFee || 800} Ksh` },
                   { label: "Methodology", val: "100% Practical" },
                   { label: "Format", val: "Hybrid Labs" }
                 ].map((stat, i) => (
@@ -100,7 +113,7 @@ export default function Home() {
                   Engineering <br/>Registry.
                 </h2>
                 <p className="text-2xl text-muted-foreground font-bold leading-tight max-w-xl">
-                  Secure your seat in the May Engineering Intensive. Limited slots for production-grade training.
+                  {alphaCohort?.shortDescription || "Secure your seat in the May Engineering Intensive. Limited slots for production-grade training."}
                 </p>
               </div>
 
@@ -111,12 +124,12 @@ export default function Home() {
                     <span className="text-xs font-black uppercase text-primary tracking-widest">Cohort Alpha Journey</span>
                     <p className="text-3xl font-bold text-primary">Registration Phase</p>
                   </div>
-                  <span className="text-4xl font-black text-secondary">35%</span>
+                  <span className="text-4xl font-black text-secondary">{registrationProgress}%</span>
                 </div>
                 <div className="h-4 w-full bg-black/5 rounded-full overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
-                    whileInView={{ width: "35%" }}
+                    whileInView={{ width: `${registrationProgress}%` }}
                     viewport={{ once: true }}
                     className="h-full bg-secondary rounded-full"
                   />
@@ -135,13 +148,15 @@ export default function Home() {
 
               <div className="flex gap-4">
                 <Button asChild size="lg" className="rounded-full px-10 bg-primary hover:bg-primary/95 text-white font-bold h-16 shadow-xl shadow-primary/20">
-                  <Link href="/register">View Registry</Link>
+                  <Link href={`/register${alphaCohort ? `?courseId=${alphaCohort.id}` : ""}`}>View Registry</Link>
                 </Button>
                 <div className="flex -space-x-4 items-center pl-4">
                   {[1,2,3].map(i => (
-                    <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-slate-200" />
+                    <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center">
+                      <Users className="h-4 w-4 text-muted-foreground/40" />
+                    </div>
                   ))}
-                  <span className="pl-4 text-xs font-bold text-muted-foreground tracking-widest">+12 New Engineers</span>
+                  <span className="pl-4 text-xs font-bold text-muted-foreground tracking-widest">+{enrollmentCount} New Engineers</span>
                 </div>
               </div>
             </div>
@@ -166,7 +181,7 @@ export default function Home() {
                   <ShieldCheck className="h-7 w-7 text-secondary" />
                 </div>
                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-secondary mb-3">Investment</h3>
-                <p className="text-3xl font-bold text-primary tracking-tight">800 Ksh</p>
+                <p className="text-3xl font-bold text-primary tracking-tight">{alphaCohort?.commitmentFee || 800} Ksh</p>
                 <p className="text-[11px] font-bold text-muted-foreground mt-4 leading-relaxed line-clamp-2">One-time registration commitment fee.</p>
               </div>
 

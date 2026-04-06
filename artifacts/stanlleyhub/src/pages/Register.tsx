@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/lib/auth";
 
 const registerSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
@@ -26,10 +27,8 @@ const registerSchema = z.object({
 });
 
 export default function Register() {
-  const [step, setStep] = useState(1);
-  const searchString = useSearch();
-  const searchParams = new URLSearchParams(searchString);
-  const initialCourseId = searchParams.get("courseId") || "";
+  const { user, token } = useAuth();
+  const isAuthenticated = !!token && !!user;
 
   const [, setLocation] = useLocation();
   const { toast } = useToast();
@@ -40,18 +39,25 @@ export default function Register() {
     { query: { queryKey: getListCoursesQueryKey({}) } }
   );
 
+  const searchString = useSearch();
+  const searchParams = new URLSearchParams(searchString);
+  const initialCourseId = searchParams.get("courseId") || "";
+
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
+      firstName: user?.firstName || "",
+      lastName: user?.lastName || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
       courseId: initialCourseId,
       paymentReference: "",
       notes: "",
     },
   });
+
+  // Start at Step 2 if already authenticated
+  const [step, setStep] = useState(isAuthenticated ? 2 : 1);
 
   const selectedCourseId = form.watch("courseId");
   const selectedCourse = (coursesData ?? []).find(c => c.id.toString() === selectedCourseId);
@@ -100,27 +106,35 @@ export default function Register() {
         
         {step < 4 && (
           <div className="mb-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-center mb-4">Join StanlleyHub</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-center mb-4">
+              {isAuthenticated ? "Complete Enrollment" : "Join StanlleyHub"}
+            </h1>
             <p className="text-center text-muted-foreground text-lg max-w-2xl mx-auto">
-              Take the first step towards a career in software engineering.
+              {isAuthenticated 
+                ? `Welcome back, ${user.firstName}. Secure your seat in a new cohort.`
+                : "Take the first step towards a career in software engineering."
+              }
             </p>
             
             <div className="flex justify-center mt-8">
               <div className="flex items-center gap-2">
-                {[1, 2, 3].map((s) => (
-                  <div key={s} className="flex items-center">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${
-                      step >= s ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
-                    }`}>
-                      {s}
+                {[1, 2, 3].map((s) => {
+                  if (isAuthenticated && s === 1) return null;
+                  return (
+                    <div key={s} className="flex items-center">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${
+                        step >= s ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                      }`}>
+                        {s}
+                      </div>
+                      {s < 3 && (
+                        <div className={`w-16 h-1 mx-2 rounded-full transition-colors ${
+                          step > s ? "bg-primary" : "bg-muted"
+                        }`} />
+                      )}
                     </div>
-                    {s < 3 && (
-                      <div className={`w-16 h-1 mx-2 rounded-full transition-colors ${
-                        step > s ? "bg-primary" : "bg-muted"
-                      }`} />
-                    )}
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
