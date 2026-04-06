@@ -63,7 +63,7 @@ export default function Home() {
                   <Link href="/register">Apply Now — 800 Ksh</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-full px-12 border-white/20 hover:bg-white/10 text-white font-black h-20 text-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95 uppercase tracking-widest">
-                  <a href="https://chat.whatsapp.com/Fp8zcgyPcQPEeqqAOqaxe2" target="_blank">Join WhatsApp Channel</a>
+                  <a href="https://chat.whatsapp.com/Fp8zcgyPcQPEeqqAOqaxe2" target="_blank" rel="noopener noreferrer">Join WhatsApp Channel</a>
                 </Button>
               </div>
 
@@ -141,7 +141,7 @@ export default function Home() {
                   {[1,2,3].map(i => (
                     <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-slate-200" />
                   ))}
-                  <span className="pl-8 text-xs font-bold text-muted-foreground tracking-widest">+12 New Engineers</span>
+                  <span className="pl-4 text-xs font-bold text-muted-foreground tracking-widest">+12 New Engineers</span>
                 </div>
               </div>
             </div>
@@ -232,10 +232,10 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-6 pt-4">
                 <Button asChild size="lg" className="rounded-full px-12 bg-primary hover:bg-primary/95 text-white font-black h-20 shadow-2xl shadow-primary/30 transition-all hover:scale-105 uppercase tracking-widest">
-                  <a href="https://linkedin.com/in/stanlley-locke-6ba090380" target="_blank">LinkedIn Profile</a>
+                  <a href="https://linkedin.com/in/stanlley-locke-6ba090380" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-full px-12 border-primary/20 hover:bg-primary/[0.04] font-black h-20 transition-all hover:scale-105 uppercase tracking-widest">
-                  <a href="/resume.pdf" target="_blank">Download Resume</a>
+                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
                 </Button>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function Home() {
                 <Link href="/register">Get Started Now</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full px-20 border-primary/20 hover:bg-primary/[0.04] text-primary font-black h-24 text-xl transition-all hover:scale-110 active:scale-95 uppercase tracking-widest">
-                <a href="https://wa.me/254752032884" target="_blank">WhatsApp Support</a>
+                <a href="https://wa.me/254752032884" target="_blank" rel="noopener noreferrer">WhatsApp Support</a>
               </Button>
             </div>
             <div className="pt-16 flex items-center justify-center gap-12 text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground">
