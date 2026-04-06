@@ -126,55 +126,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Clean Premium Cohort Section */}
-      <section className="relative py-32 bg-white overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#00215E_1px,transparent_1px)] [background-size:20px_20px]" />
+      {/* Ongoing Cohort Section - Full Screen */}
+      <section className="relative min-h-screen flex flex-col justify-center py-24 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#00215E_1.5px,transparent_1.5px)] [background-size:32px_32px]" />
         
         <div className="container mx-auto px-4 relative text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-primary">Cohort Engineering Registry</h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl lg:text-6xl font-bold tracking-tight text-primary uppercase italic"
+          >
+            Ongoing Cohort
+          </motion.h2>
         </div>
 
         <div className="container mx-auto px-4 relative">
-          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid md:grid-cols-3 gap-12 items-stretch max-w-6xl mx-auto">
             {/* Status Card */}
-            <div className="group bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
-              <div className="flex items-center justify-between mb-10">
-                <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Schedule</span>
+            <div className="group bg-white border border-black/10 rounded-[3rem] p-12 shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.08)] transition-all duration-700 hover:-translate-y-2">
+              <div className="flex items-center justify-between mb-12">
+                <div className="h-3 w-3 rounded-full bg-secondary animate-pulse" />
+                <span className="text-[12px] font-extrabold uppercase tracking-[0.4em] text-secondary italic">Schedule</span>
               </div>
-              <Calendar className="h-12 w-12 text-primary mb-8 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3 font-bold">Duration</h3>
-              <p className="text-4xl font-bold text-primary tracking-tight">May — July</p>
-              <div className="mt-10 pt-10 border-t border-black/5 flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Status</span>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full">Enrolling</span>
+              <Calendar className="h-16 w-16 text-primary mb-10 group-hover:scale-110 transition-transform duration-700" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground mb-4">Duration</h3>
+              <p className="text-5xl font-bold text-primary tracking-tighter italic">May — July</p>
+              <div className="mt-12 pt-12 border-t border-black/5 flex items-center justify-between">
+                <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Status</span>
+                <span className="text-[12px] font-black uppercase tracking-widest text-secondary bg-secondary/10 px-4 py-1.5 rounded-full">Enrolling</span>
               </div>
             </div>
 
             {/* Investment Card */}
-            <div className="group bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
-              <div className="flex items-center justify-between mb-10">
-                <ShieldCheck className="h-6 w-6 text-secondary" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Secure</span>
+            <div className="group bg-white border border-black/10 rounded-[3rem] p-12 shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.08)] transition-all duration-700 hover:-translate-y-2">
+              <div className="flex items-center justify-between mb-12">
+                <ShieldCheck className="h-7 w-7 text-secondary" />
+                <span className="text-[12px] font-extrabold uppercase tracking-[0.4em] text-secondary italic">Secure</span>
               </div>
-              <ShieldCheck className="h-12 w-12 text-primary mb-8 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3 font-bold">Investment</h3>
-              <p className="text-4xl font-bold text-primary tracking-tight">800 Ksh</p>
-              <p className="text-xs font-medium text-muted-foreground mt-4 leading-relaxed font-bold">Secure your seat in the engineering intensive.</p>
+              <ShieldCheck className="h-16 w-16 text-primary mb-10 group-hover:scale-110 transition-transform duration-700" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground mb-4">Investment</h3>
+              <p className="text-5xl font-bold text-primary tracking-tighter italic">800 Ksh</p>
+              <p className="text-sm font-bold text-muted-foreground mt-6 leading-relaxed max-w-[15ch]">Professional engineering commitment.</p>
             </div>
 
             {/* Methodology Card */}
-            <div className="group bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
-              <div className="flex items-center justify-between mb-10">
-                <Zap className="h-6 w-6 text-secondary" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Labs</span>
+            <div className="group bg-white border border-black/10 rounded-[3rem] p-12 shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.08)] transition-all duration-700 hover:-translate-y-2">
+              <div className="flex items-center justify-between mb-12">
+                <Zap className="h-7 w-7 text-secondary" />
+                <span className="text-[12px] font-extrabold uppercase tracking-[0.4em] text-secondary italic">Labs</span>
               </div>
-              <Zap className="h-12 w-12 text-primary mb-8 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3 font-bold">Approach</h3>
-              <p className="text-4xl font-bold text-primary tracking-tight">100% Practical</p>
-              <div className="mt-10 flex flex-wrap gap-2">
-                {["Labs", "Projects", "Deploy"].map((tag) => (
-                  <span key={tag} className="text-[10px] font-bold px-4 py-1.5 rounded-full border border-primary/10 bg-primary/5 text-primary uppercase tracking-tighter">{tag}</span>
+              <Zap className="h-16 w-16 text-primary mb-10 group-hover:scale-110 transition-transform duration-700" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground mb-4">Approach</h3>
+              <p className="text-5xl font-bold text-primary tracking-tighter italic">100% Practical</p>
+              <div className="mt-12 flex flex-wrap gap-3">
+                {["Labs", "Deploy", "Scale"].map((tag) => (
+                  <span key={tag} className="text-[11px] font-black px-5 py-2 rounded-full border border-primary/10 bg-primary/[0.03] text-primary uppercase tracking-[0.1em]">{tag}</span>
                 ))}
               </div>
             </div>
@@ -182,87 +189,98 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Meet Your Mentor - Clean White Redesign */}
-      <section id="mentor" className="py-40 bg-[#FAFAFA] border-y border-black/5">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-24 items-start">
-            <div className="space-y-12">
+      {/* Meet Your Mentor - Full Screen Redesign */}
+      <section id="mentor" className="relative min-h-screen flex flex-col justify-center py-32 bg-[#FAFAFA] border-y border-black/10 overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-32 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-16"
+            >
               <div>
-                <div className="h-1.5 w-12 bg-secondary mb-8 rounded-full" />
-                <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-secondary mb-4">Lead Engineer</h2>
-                <h3 className="text-5xl lg:text-7xl font-bold text-primary tracking-tighter leading-tight italic">Stanlley Locke</h3>
+                <div className="h-2 w-16 bg-secondary mb-10 rounded-full" />
+                <h2 className="text-sm font-black uppercase tracking-[0.5em] text-secondary mb-6 italic">Lead Engineer</h2>
+                <h3 className="text-6xl lg:text-9xl font-bold text-primary tracking-tighter leading-[0.9] italic">Stanlley <br/> Locke</h3>
               </div>
               
-              <div className="space-y-8 text-xl text-muted-foreground leading-relaxed font-medium max-w-xl">
+              <div className="space-y-10 text-2xl text-muted-foreground leading-relaxed font-semibold max-w-xl">
                 <p>
-                  Specializing in <span className="font-bold text-primary">production-grade architecture</span>, developer tooling, and custom AI frameworks.
+                  Specializing in <span className="text-primary underline underline-offset-8 decoration-secondary/30">production-grade architecture</span>, developer tooling, and custom AI frameworks.
                 </p>
                 <p>
-                  I bridge the gap between abstract academic theory and <span className="font-bold text-primary">deployable engineering solutions</span> that scale.
+                  I bridge the gap between academic theory and <span className="text-primary underline underline-offset-8 decoration-secondary/30">deployable engineering solutions</span> that scale.
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-10">
+              <div className="grid sm:grid-cols-2 gap-12">
                 {[
                   { icon: Terminal, title: "Senior Dev", desc: "Flask, Node.js, React, Flutter & DevOps" },
                   { icon: Brain, title: "AI Builder", desc: "Neural frameworks & GPU pipelines" }
                 ].map((skill, i) => (
-                  <div key={i} className="flex gap-5">
-                    <div className="h-12 w-12 rounded-2xl bg-white shadow-sm flex items-center justify-center shrink-0 border border-black/5">
-                      <skill.icon className="h-6 w-6 text-secondary" />
+                  <div key={i} className="flex gap-6 items-start">
+                    <div className="h-16 w-16 rounded-[1.5rem] bg-white shadow-[0_8px_20px_rgba(0,0,0,0.03)] flex items-center justify-center shrink-0 border border-black/5">
+                      <skill.icon className="h-8 w-8 text-secondary" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-primary mb-1 uppercase tracking-widest text-[10px] tracking-[0.2em]">{skill.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed font-medium">{skill.desc}</p>
+                      <h4 className="font-black text-primary mb-2 uppercase tracking-[0.2em] text-xs underline decoration-secondary/20">{skill.title}</h4>
+                      <p className="text-base text-muted-foreground font-semibold leading-snug">{skill.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-8 flex flex-wrap gap-4">
-                <Button asChild size="lg" className="rounded-full px-10 bg-primary hover:bg-primary/95 text-white font-bold h-16 shadow-2xl shadow-primary/20 transition-all active:scale-95">
+              <div className="pt-12 flex flex-col sm:flex-row gap-6">
+                <Button asChild size="lg" className="rounded-full px-12 bg-primary hover:bg-primary/95 text-white font-black h-20 shadow-2xl shadow-primary/30 transition-all hover:scale-105 active:scale-95 text-lg uppercase tracking-widest">
                   <a href="https://linkedin.com/in/stanlley-locke-6ba090380" target="_blank">LinkedIn Profile</a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full px-10 border-primary/20 hover:bg-primary/[0.02] font-bold h-16 transition-all active:scale-95">
+                <Button asChild variant="outline" size="lg" className="rounded-full px-12 border-primary/20 hover:bg-primary/[0.04] font-black h-20 transition-all hover:scale-105 active:scale-95 text-lg uppercase tracking-widest">
                   <Link href="/resume.pdf" target="_blank">Download Resume</Link>
                 </Button>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="bg-white border border-black/5 rounded-[3rem] p-12 shadow-[0_20px_60px_rgba(0,0,0,0.04)]">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary mb-12 border-b border-black/5 pb-8">Featured Engineering Artifacts</h4>
-              <div className="space-y-12">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white border border-black/10 rounded-[4rem] p-16 shadow-[0_40px_100px_rgba(0,0,0,0.05)] relative"
+            >
+              <div className="absolute top-12 right-12 h-12 w-12 rounded-full border border-black/5 flex items-center justify-center opacity-20">
+                <Code className="text-primary" />
+              </div>
+              <h4 className="text-xs font-black uppercase tracking-[0.5em] text-secondary mb-16 border-b border-black/5 pb-10 italic">Core Engineering Artifacts</h4>
+              <div className="space-y-16">
                 {[
                   { title: "StanleyHub", desc: "Enterprise learning ecosystems with realtime Socket.IO integration and scalable SQLite architecture." },
                   { title: "NeuralNetV2", desc: "Sophisticated neural training framework supporting GPU-accelerated reproducible experiments." },
                   { title: "Coinium", desc: "Realtime blockchain simulation engine with integrated Telegram automation." },
                 ].map((project, i) => (
-                  <div key={i} className="group cursor-default">
+                  <div key={i} className="group cursor-default relative pl-6 border-l-2 border-black/5 hover:border-secondary transition-colors">
                     <div className="flex items-center justify-between mb-4">
-                      <h5 className="text-2xl font-bold text-primary group-hover:text-secondary transition-colors tracking-tight italic">{project.title}</h5>
-                      <div className="h-8 w-8 rounded-full border border-black/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                        <ExternalLink className="h-4 w-4 text-secondary" />
-                      </div>
+                      <h5 className="text-3xl font-black text-primary group-hover:text-secondary transition-colors tracking-tighter italic">{project.title}</h5>
+                      <ExternalLink className="h-5 w-5 text-secondary opacity-0 group-hover:opacity-100 transition-all transform scale-50 group-hover:scale-100" />
                     </div>
-                    <p className="text-muted-foreground leading-relaxed font-medium text-base">{project.desc}</p>
+                    <p className="text-muted-foreground leading-relaxed font-bold text-lg">{project.desc}</p>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* The Core Stack - Clean Redesign */}
-      <section className="py-40 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-24">
-            <h2 className="text-sm font-extrabold uppercase tracking-[0.4em] text-secondary mb-6 italic">Engineering tracks</h2>
-            <h3 className="text-5xl font-bold mb-8 tracking-tighter text-primary">The 100% Practical Stack</h3>
-            <p className="text-xl text-muted-foreground font-medium">We don't teach "tutorials." We build production-ready systems using the industry's most in-demand tools.</p>
-          </div>
+      {/* The Core Stack - Full Screen Clean Redesign */}
+      <section className="relative min-h-screen flex flex-col justify-center py-40 bg-white overflow-hidden">
+        <div className="container mx-auto px-4 text-center max-w-5xl mx-auto mb-32">
+          <h2 className="text-sm font-black uppercase tracking-[0.6em] text-secondary mb-8 italic">Engineering Tracks</h2>
+          <h3 className="text-7xl lg:text-9xl font-bold mb-10 tracking-tighter text-primary italic">Practical Stack.</h3>
+          <p className="text-2xl text-muted-foreground font-bold tracking-tight max-w-3xl mx-auto">We don't teach "tutorials." We build production-ready systems using the industry's most in-demand tools.</p>
+        </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="container mx-auto px-4 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
               { icon: Code, title: "Web Engineering", desc: "Building scalable frontends and high-performance Node.js backends." },
               { icon: Server, title: "Python/Backend", desc: "Mastering OOP, Flask, Django, and modern API architecture." },
@@ -271,47 +289,109 @@ export default function Home() {
             ].map((track, i) => (
               <motion.div 
                 key={i}
-                whileHover={{ y: -10 }}
-                className="bg-[#FDFDFD] p-10 rounded-[2.5rem] border border-black/5 hover:border-secondary/20 transition-all duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.02)]"
+                whileHover={{ y: -20, scale: 1.02 }}
+                className="bg-white p-12 rounded-[3.5rem] border border-black/10 hover:border-secondary/30 transition-all duration-700 shadow-[0_15px_60px_rgba(0,0,0,0.03)] group"
               >
-                <div className="h-16 w-16 bg-primary/5 rounded-[1.25rem] flex items-center justify-center mb-10 transition-colors group-hover:bg-secondary/10">
-                  <track.icon className="h-8 w-8 text-secondary" />
+                <div className="h-20 w-20 bg-primary/5 rounded-[2rem] flex items-center justify-center mb-12 transition-all duration-700 group-hover:bg-secondary/10 group-hover:rotate-6">
+                  <track.icon className="h-10 w-10 text-secondary" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-primary tracking-tight">{track.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm font-medium">{track.desc}</p>
+                <h3 className="text-2xl font-black mb-6 text-primary tracking-tighter italic">{track.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-lg font-bold">{track.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section id="connect" className="py-24 relative overflow-hidden">
+      {/* High-Impact CTA - Full Screen Focus */}
+      <section className="relative min-h-[90vh] flex flex-col justify-center py-40 bg-primary text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A059_2px,transparent_2px)] [background-size:48px_48px]" />
+        
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="space-y-16"
+          >
+            <h2 className="text-sm font-black uppercase tracking-[0.8em] text-secondary mb-10 italic">Enrollment Closing Soon</h2>
+            <h3 className="text-6xl lg:text-9xl font-black tracking-tighter leading-[0.85] italic">
+              Seats are filling up fast. <br/>
+              <span className="text-secondary">Join the May Cohort Today.</span>
+            </h3>
+            <p className="text-2xl lg:text-3xl text-white/70 font-black max-w-4xl mx-auto leading-tight italic">
+              Ready to stop watching tutorials and start building systems? Pay the 800 Ksh commitment fee and secure your future.
+            </p>
+            <div className="pt-20 flex flex-col sm:flex-row gap-10 justify-center">
+              <Button asChild size="lg" className="rounded-full px-20 bg-secondary hover:bg-secondary/90 text-primary font-black h-28 text-2xl shadow-[0_20px_80px_rgba(197,160,89,0.3)] transition-all hover:scale-110 active:scale-95 uppercase tracking-widest italic">
+                <Link href="/apply">Get Started Now</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-full px-20 border-white/40 hover:bg-white/10 text-white font-black h-28 text-2xl transition-all hover:scale-110 active:scale-95 uppercase tracking-widest italic">
+                <a href="https://wa.me/254752032884" target="_blank">WhatsApp Support</a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Professional Footer - Clean White Premium */}
+      <footer className="bg-white border-t border-black/10 pt-40 pb-20">
         <div className="container mx-auto px-4">
-          <div className="bg-primary text-primary-foreground rounded-[2.5rem] p-10 lg:p-20 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary/10 skew-x-12 transform translate-x-1/2" />
-            <div className="relative z-10 max-w-3xl">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
-                Seats are filling up fast. <br />
-                <span className="text-secondary">Join the May Cohort Today.</span>
-              </h2>
-              <p className="text-xl opacity-90 mb-10 max-w-2xl">
-                Ready to stop watching tutorials and start building systems? Pay the 800 Ksh one-time registration commitment fee and secure your future.
-              </p>
-              <div className="flex flex-wrap gap-6">
-                <Button asChild size="lg" className="h-14 px-10 text-lg font-bold bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                  <Link href="/register">Get Started Now</Link>
-                </Button>
-                <div className="flex items-center gap-4 text-secondary-foreground font-medium">
-                  <a href="https://wa.me/254752032884" target="_blank" className="hover:underline flex items-center gap-2">
-                    <ArrowRight className="h-5 w-5" /> WhatsApp Support
-                  </a>
-                </div>
+          <div className="grid lg:grid-cols-4 gap-24 mb-32">
+            {/* Brand Section */}
+            <div className="space-y-12">
+              <div className="flex items-center gap-4">
+                <img src="/StanlleyHub_Education_logo.png" alt="Logo" className="h-12 w-auto" />
+                <span className="text-3xl font-black tracking-tighter text-primary italic uppercase">StanlleyHub</span>
               </div>
+              <p className="text-xl text-muted-foreground font-bold leading-relaxed">
+                Democratizing high-level tech education through 100% practical, zero-fluff engineering training.
+              </p>
+            </div>
+
+            {/* Programs Section */}
+            <div className="space-y-12">
+              <h4 className="text-xs font-black uppercase tracking-[0.6em] text-secondary italic">Programs</h4>
+              <ul className="space-y-6">
+                {["Full-Stack Web Dev", "AI & Machine Learning", "DevOps & Cloud", "Python Engineering"].map((item) => (
+                  <li key={item}>
+                    <Link href="#" className="text-xl text-primary/70 hover:text-secondary font-black transition-colors italic">{item}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect Section */}
+            <div className="space-y-12">
+              <h4 className="text-xs font-black uppercase tracking-[0.6em] text-secondary italic">Connect</h4>
+              <ul className="space-y-6">
+                <li><a href="https://wa.me/254752032884" className="text-xl text-primary/70 hover:text-secondary font-black transition-colors italic">WhatsApp Support</a></li>
+                <li><a href="#" className="text-xl text-primary/70 hover:text-secondary font-black transition-colors italic">Join Community</a></li>
+                <li><a href="mailto:stanlleylocke@gmail.com" className="text-xl text-primary/70 hover:text-secondary font-black transition-colors italic">stanlleylocke@gmail.com</a></li>
+                <li><Link href="/contact" className="text-xl text-secondary font-black hover:underline underline-offset-8 italic">Message Stanlley</Link></li>
+              </ul>
+            </div>
+
+            {/* Mission Section */}
+            <div className="space-y-12">
+              <h4 className="text-xs font-black uppercase tracking-[0.6em] text-secondary italic">Mission</h4>
+              <p className="text-xl text-muted-foreground font-black italic leading-relaxed">
+                "Developers learn best by building. We focus on creating deployable solutions, not just code in a vacuum."
+              </p>
+            </div>
+          </div>
+
+          <div className="pt-20 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-10">
+            <p className="text-sm font-black text-muted-foreground uppercase tracking-[0.2em]">
+              © 2026 StanlleyHub Education Platform. Engineering Excellence.
+            </p>
+            <div className="flex gap-12">
+              <a href="#" className="text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground hover:text-primary transition-colors italic">Privacy Policy</a>
+              <a href="#" className="text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground hover:text-primary transition-colors italic">Terms of Service</a>
             </div>
           </div>
         </div>
-      </section>
+      </footer>
     </PublicLayout>
   );
 }
