@@ -49,7 +49,20 @@ async function seed() {
     },
   ];
 
-  await db.insert(usersTable).values([adminUser, ...students]).onConflictDoNothing();
+  for (const user of [adminUser, ...students]) {
+    await db.insert(usersTable)
+      .values(user)
+      .onConflictDoUpdate({
+        target: usersTable.email,
+        set: {
+          passwordHash: user.passwordHash,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role,
+          status: user.status,
+        }
+      });
+  }
 
   // 2. Seed Courses
   console.log("📚 Seeding courses...");
