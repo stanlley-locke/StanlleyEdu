@@ -32,10 +32,10 @@ export function PublicLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
       {/* Liquid Glass Floating Navbar */}
       <div className="fixed top-6 left-0 w-full z-50 px-4 pointer-events-none">
-        <header className={`mx-auto max-w-7xl transition-all duration-500 pointer-events-auto rounded-[2rem] border border-white/10 ${
+        <header className={`mx-auto max-w-7xl transition-all duration-500 pointer-events-auto rounded-[2rem] border border-white/20 ${
           isScrolled 
-            ? "bg-background/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-2" 
-            : "bg-white/5 backdrop-blur-md py-4"
+            ? "bg-background/40 backdrop-blur-[40px] shadow-[0_8px_32px_rgba(0,0,0,0.2)] py-2" 
+            : "bg-white/10 backdrop-blur-[20px] py-4"
         }`}>
           <div className="container mx-auto px-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group transition-transform hover:scale-105 active:scale-95">

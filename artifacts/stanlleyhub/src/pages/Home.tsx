@@ -27,11 +27,11 @@ export default function Home() {
     <PublicLayout>
       {/* Immersive Hero Section */}
       <section className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden">
-        {/* Unsplash Background Image */}
-        <div className="absolute inset-0 z-0">
+        {/* Local Hero Background Image */}
+        <div className="absolute inset-0 z-0 text-white">
           <img 
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
-            alt="Engineering Background" 
+            src="/hero_background.jpg" 
+            alt="StanlleyHub Education Hero" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background" />
