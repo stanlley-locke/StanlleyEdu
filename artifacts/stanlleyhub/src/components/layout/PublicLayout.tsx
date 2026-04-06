@@ -30,72 +30,85 @@ export function PublicLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
-      {/* Navbar */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b py-3" : "bg-transparent py-5"
-      }`}>
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="h-10 w-10 relative overflow-hidden rounded-lg bg-white p-1">
-              <img 
-                src="/StanlleyHub_Education_logo.png" 
-                alt="StanlleyHub Education Logo" 
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <span className="font-bold text-xl tracking-tight hidden sm:block">
-              StanlleyHub <span className="text-secondary">Education</span>
-            </span>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/courses" className="text-sm font-medium hover:text-secondary transition-colors">Programs</Link>
-            <Link href="/#mentor" className="text-sm font-medium hover:text-secondary transition-colors">The Mentor</Link>
-            <Link href="/#connect" className="text-sm font-medium hover:text-secondary transition-colors">Connect</Link>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            {token ? (
-              <div className="flex items-center gap-4">
-                <Button asChild variant="ghost" size="sm">
-                  <Link href={role === 'admin' ? '/admin/dashboard' : '/student/dashboard'}>Dashboard</Link>
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => { logout(); setLocation('/'); }} className="text-destructive border-destructive/20 hover:bg-destructive/10">
-                  Logout
-                </Button>
+      {/* Liquid Glass Floating Navbar */}
+      <div className="fixed top-6 left-0 w-full z-50 px-4 pointer-events-none">
+        <header className={`mx-auto max-w-7xl transition-all duration-500 pointer-events-auto rounded-[2rem] border border-white/10 ${
+          isScrolled 
+            ? "bg-background/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-2" 
+            : "bg-white/5 backdrop-blur-md py-4"
+        }`}>
+          <div className="container mx-auto px-6 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-3 group transition-transform hover:scale-105 active:scale-95">
+              <div className="h-10 w-10 relative overflow-hidden rounded-xl bg-white p-1 shadow-inner">
+                <img 
+                  src="/StanlleyHub_Education_logo.png" 
+                  alt="Logo" 
+                  className="h-full w-full object-contain"
+                />
               </div>
-            ) : (
-              <div className="flex items-center gap-3">
-                <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-                  <Link href="/login">Login</Link>
-                </Button>
-                <Button asChild size="sm" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg shadow-secondary/20">
-                  <Link href="/register">Enroll Now</Link>
-                </Button>
-                <button 
-                  className="md:hidden p-2 hover:bg-muted rounded-md transition-colors"
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                  {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+              <span className="font-bold text-lg tracking-tight hidden sm:block">
+                StanlleyHub <span className="text-secondary">Education</span>
+              </span>
+            </Link>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-background border-b p-4 space-y-4 animate-in slide-in-from-top duration-300">
-            <nav className="flex flex-col gap-4">
-              <Link href="/courses" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium p-2">Programs</Link>
-              <Link href="/#mentor" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium p-2">The Mentor</Link>
-              <Link href="/#connect" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium p-2">Connect</Link>
+            <nav className="hidden md:flex items-center gap-10">
+              <Link href="/courses" className="relative group py-2">
+                <span className="text-sm font-semibold text-foreground/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Programs</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
+              </Link>
+              <Link href="/#mentor" className="relative group py-2">
+                <span className="text-sm font-semibold text-foreground/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Mentor</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
+              </Link>
+              <Link href="/#connect" className="relative group py-2">
+                <span className="text-sm font-semibold text-foreground/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Connect</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
+              </Link>
             </nav>
-          </div>
-        )}
-      </header>
 
-      <main className="flex-1 pt-20">
+            <div className="flex items-center gap-4">
+              {token ? (
+                <div className="flex items-center gap-4">
+                  <Button asChild variant="ghost" size="sm" className="rounded-full px-5 hover:bg-white/10">
+                    <Link href={role === 'admin' ? '/admin/dashboard' : '/student/dashboard'}>Dashboard</Link>
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => { logout(); setLocation('/'); }} className="rounded-full px-5 text-destructive border-destructive/20 hover:bg-destructive/10">
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex rounded-full px-5 hover:bg-white/10">
+                    <Link href="/login">Login</Link>
+                  </Button>
+                  <Button asChild size="sm" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg shadow-secondary/20 rounded-full px-6 font-bold tracking-wide">
+                    <Link href="/register">Enroll Now</Link>
+                  </Button>
+                  <button 
+                    className="md:hidden p-2 hover:bg-white/10 rounded-full transition-colors"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  >
+                    {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Menu - Liquid Glass Style */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute top-[calc(100%+12px)] left-0 w-full bg-background/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 space-y-4 animate-in slide-in-from-top-4 duration-500 overflow-hidden shadow-2xl">
+              <nav className="flex flex-col gap-2">
+                <Link href="/courses" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Programs</Link>
+                <Link href="/#mentor" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Mentor</Link>
+                <Link href="/#connect" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Connect</Link>
+              </nav>
+            </div>
+          )}
+        </header>
+      </div>
+
+      <main className="flex-1">
         {children}
       </main>
 
