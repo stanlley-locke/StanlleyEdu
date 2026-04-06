@@ -25,26 +25,34 @@ import { Badge } from "@/components/ui/badge";
 export default function Home() {
   return (
     <PublicLayout>
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-background">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#00215E08,transparent_50%)]" />
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_70%_50%,#005C9708,transparent_50%)]" />
+      {/* Immersive Hero Section */}
+      <section className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden">
+        {/* Unsplash Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" 
+            alt="Engineering Background" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background" />
+          <div className="absolute inset-0 backdrop-blur-[2px]" />
+        </div>
         
-        <div className="container mx-auto px-4 relative">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 1 }}
             >
-              <div className="inline-flex items-center gap-2 mb-6 bg-secondary/5 text-secondary border border-secondary/10 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
+              <div className="inline-flex items-center gap-2 mb-6 bg-secondary/10 text-secondary border border-secondary/20 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase backdrop-blur-md">
                 <Monitor className="h-3.5 w-3.5" /> Software Engineering Bootcamp
               </div>
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-foreground mb-8 leading-[1.05]">
-                Master the Skills that <span className="text-secondary">Actually Matter.</span>
+              <h1 className="text-5xl lg:text-8xl font-bold tracking-tight text-white mb-8 leading-[1.05]">
+                Master Skills that <span className="text-secondary text-glow">Actually Matter.</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl">
-                100% Practical. Zero Fluff. A 3-month engineering intensive designed to bridge the gap between academic theory and real-world application.
+              <p className="text-xl text-zinc-300 mb-10 leading-relaxed max-w-xl">
+                100% Practical. Bridge the gap between theory and industry.
               </p>
               
               <div className="flex flex-wrap gap-4">
