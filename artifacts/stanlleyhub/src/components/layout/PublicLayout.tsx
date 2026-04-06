@@ -53,15 +53,15 @@ export function PublicLayout({ children }: { children: ReactNode }) {
 
             <nav className="hidden md:flex items-center gap-10">
               <Link href="/courses" className="relative group py-2">
-                <span className="text-sm font-semibold text-foreground/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Programs</span>
+                <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Programs</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
               <Link href="/#mentor" className="relative group py-2">
-                <span className="text-sm font-semibold text-foreground/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Mentor</span>
+                <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Mentor</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
               <Link href="/#connect" className="relative group py-2">
-                <span className="text-sm font-semibold text-foreground/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Connect</span>
+                <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Connect</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
             </nav>

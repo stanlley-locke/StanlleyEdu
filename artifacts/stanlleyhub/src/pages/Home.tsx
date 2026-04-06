@@ -126,24 +126,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Cohort Highlights - Organized Section */}
-      <section className="py-24 bg-muted/30 border-y">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12 text-center items-center">
-            <div className="space-y-2">
-              <Calendar className="h-8 w-8 mx-auto text-secondary mb-4" />
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Duration</h3>
-              <p className="text-2xl font-bold">May - July 2024</p>
+      {/* Phase Registry - Redesigned Cohort Section */}
+      <section className="relative py-24 bg-[#0a0a0a] overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+        
+        <div className="container mx-auto px-4 relative">
+          <div className="flex flex-col md:flex-row gap-8 items-stretch">
+            {/* Status Card */}
+            <div className="flex-1 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
+              <div className="flex items-center justify-between mb-8">
+                <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Cohort Registry</span>
+              </div>
+              <Calendar className="h-10 w-10 text-secondary mb-6" />
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Duration</h3>
+              <p className="text-4xl font-bold text-white tracking-tight">May — July</p>
+              <div className="mt-8 pt-8 border-t border-white/5 flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Status</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-secondary underline underline-offset-4">Registration Open</span>
+              </div>
             </div>
-            <div className="space-y-2 border-y md:border-y-0 md:border-x py-8 md:py-0">
-              <ShieldCheck className="h-8 w-8 mx-auto text-secondary mb-4" />
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Investment</h3>
-              <p className="text-2xl font-bold">800 Ksh Commitment</p>
+
+            {/* Investment Card */}
+            <div className="flex-1 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
+              <div className="flex items-center justify-between mb-8">
+                <ShieldCheck className="h-5 w-5 text-secondary" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Verification</span>
+              </div>
+              <ShieldCheck className="h-10 w-10 text-secondary mb-6" />
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Investment</h3>
+              <p className="text-4xl font-bold text-white tracking-tight">800 Ksh</p>
+              <p className="text-xs font-medium text-muted-foreground mt-2">One-time registration commitment fee.</p>
             </div>
-            <div className="space-y-2">
-              <Zap className="h-8 w-8 mx-auto text-secondary mb-4" />
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Methodology</h3>
-              <p className="text-2xl font-bold">100% Practical Labs</p>
+
+            {/* Methodology Card */}
+            <div className="flex-1 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
+              <div className="flex items-center justify-between mb-8">
+                <Zap className="h-5 w-5 text-secondary" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary">Labs</span>
+              </div>
+              <Zap className="h-10 w-10 text-secondary mb-6" />
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Methodology</h3>
+              <p className="text-4xl font-bold text-white tracking-tight">100% Practical</p>
+              <div className="mt-8 flex gap-2">
+                {["Hands-on", "Deployable", "Real-world"].map((tag) => (
+                  <span key={tag} className="text-[10px] font-bold px-3 py-1 rounded-full border border-white/10 bg-white/5 text-muted-foreground uppercase">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
