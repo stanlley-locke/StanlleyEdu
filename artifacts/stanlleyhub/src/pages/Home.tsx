@@ -16,7 +16,9 @@ import {
   Terminal, 
   Zap,
   ShieldCheck,
-  MessageSquare
+  MessageCircle,
+  Monitor,
+  Calendar
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -25,8 +27,8 @@ export default function Home() {
     <PublicLayout>
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-background">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#00215E10,transparent_50%)]" />
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_70%_50%,#005C9710,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#00215E08,transparent_50%)]" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_70%_50%,#005C9708,transparent_50%)]" />
         
         <div className="container mx-auto px-4 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -35,54 +37,54 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Badge className="mb-6 bg-secondary/10 text-secondary border-secondary/20 px-4 py-1 text-sm font-semibold tracking-wider uppercase">
-                💻 Software Bootcamp May - July
-              </Badge>
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-foreground mb-8 leading-[1.1]">
+              <div className="inline-flex items-center gap-2 mb-6 bg-secondary/5 text-secondary border border-secondary/10 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
+                <Monitor className="h-3.5 w-3.5" /> Software Engineering Bootcamp
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-foreground mb-8 leading-[1.05]">
                 Master the Skills that <span className="text-secondary">Actually Matter.</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl">
-                100% Practical. Zero Fluff. Join a 3-month engineering intensive designed to bridge the gap between academic theory and real-world application.
+                100% Practical. Zero Fluff. A 3-month engineering intensive designed to bridge the gap between academic theory and real-world application.
               </p>
               
-              <div className="flex flex-wrap gap-4 overflow-hidden">
-                <Button asChild size="lg" className="h-14 px-8 text-lg font-bold bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-xl shadow-secondary/20">
-                  <Link href="/register">Apply Now (800 Ksh)</Link>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="h-14 px-8 text-lg font-bold bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all">
+                  <Link href="/register">Apply Now — 800 Ksh</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-14 px-8 text-lg font-medium border-primary/20 hover:bg-primary/5">
+                <Button asChild variant="outline" size="lg" className="h-14 px-8 text-lg font-medium border-primary/10 hover:bg-primary/5 transition-all">
                   <a href="https://chat.whatsapp.com/Fp8zcgyPcQPEeqqAOqaxe2" target="_blank">
-                    <MessageSquare className="mr-2 h-5 w-5 text-secondary" />
+                    <MessageCircle className="mr-2 h-5 w-5 text-secondary" />
                     Join WhatsApp Channel
                   </a>
                 </Button>
               </div>
 
-              <div className="mt-12 flex items-center gap-6 text-sm text-muted-foreground font-medium">
-                <span className="flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-secondary" /> Certification</span>
-                <span className="flex items-center gap-2"><Zap className="h-5 w-5 text-secondary" /> 100% Practical</span>
-                <span className="flex items-center gap-2"><Layers className="h-5 w-5 text-secondary" /> Portfolio-Ready</span>
+              <div className="mt-12 flex items-center gap-8 text-xs text-muted-foreground font-bold tracking-widest uppercase">
+                <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-secondary" /> Certification</span>
+                <span className="flex items-center gap-2"><Zap className="h-4 w-4 text-secondary" /> 100% Practical</span>
+                <span className="flex items-center gap-2"><Layers className="h-4 w-4 text-secondary" /> Portfolio-Ready</span>
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
+              className="relative hidden lg:block"
             >
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-[2rem] blur-2xl opacity-10 animate-pulse" />
+              <div className="absolute -inset-10 bg-gradient-to-r from-primary/5 to-accent/5 rounded-full blur-3xl" />
               <div className="relative bg-card border rounded-2xl overflow-hidden shadow-2xl">
-                <div className="bg-muted px-4 py-3 flex items-center gap-2 border-b">
+                <div className="bg-muted/50 px-4 py-3 flex items-center gap-2 border-b">
                   <div className="flex gap-1.5">
-                    <div className="h-3 w-3 rounded-full bg-red-500/50" />
-                    <div className="h-3 w-3 rounded-full bg-yellow-500/50" />
-                    <div className="h-3 w-3 rounded-full bg-green-500/50" />
+                    <div className="h-3 w-3 rounded-full bg-border" />
+                    <div className="h-3 w-3 rounded-full bg-border" />
+                    <div className="h-3 w-3 rounded-full bg-border" />
                   </div>
                   <div className="mx-auto text-[10px] uppercase tracking-widest font-bold text-muted-foreground flex items-center gap-1">
                     <Terminal className="h-3 w-3" /> StanlleyHub Engine v2.0
                   </div>
                 </div>
-                <div className="p-6 font-mono text-sm leading-relaxed overflow-x-auto whitespace-nowrap lg:whitespace-normal">
+                <div className="p-8 font-mono text-sm leading-relaxed">
                   <div className="flex gap-4 mb-4">
                     <span className="text-secondary">class</span>
                     <span className="text-accent">Engineer</span>
@@ -96,45 +98,60 @@ export default function Home() {
                     <div className="pl-6 text-muted-foreground">
                       this.stack = ["React", "Node.js", "Python", "AI", "DevOps"];
                       <br />
-                      this.approach = "100%_Practical";
+                      this.approach = "Practical_Systems";
                       <br />
-                      this.goal = "Build_Real_World_Apps";
+                      this.lifecycle = "May - July";
                     </div>
                     <div className="text-foreground">{'}'}</div>
                   </div>
                   <div className="pl-6 mt-4">
                     <span className="text-accent">deploy</span>
                     <span className="text-foreground">() {'{'}</span>
-                    <div className="pl-6 text-secondary">return "Ready for Industry 🚀";</div>
+                    <div className="pl-6 text-secondary">return "Ready for Production";</div>
                     <span className="text-foreground">{'}'}</span>
                   </div>
                   <div className="text-foreground mt-4">{'}'}</div>
                 </div>
-              </div>
-              
-              {/* Floating Tech Badges */}
-              <div className="absolute -top-6 -right-6 h-20 w-20 bg-secondary rounded-full flex items-center justify-center text-secondary-foreground font-bold text-sm shadow-xl animate-bounce">
-                Python
-              </div>
-              <div className="absolute -bottom-6 -left-6 h-16 w-16 bg-accent rounded-full flex items-center justify-center text-white font-bold text-xs shadow-xl rotate-12">
-                React
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Cohort Highlights - Organized Section */}
+      <section className="py-24 bg-muted/30 border-y">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-12 text-center items-center">
+            <div className="space-y-2">
+              <Calendar className="h-8 w-8 mx-auto text-secondary mb-4" />
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Duration</h3>
+              <p className="text-2xl font-bold">May - July 2024</p>
+            </div>
+            <div className="space-y-2 border-y md:border-y-0 md:border-x py-8 md:py-0">
+              <ShieldCheck className="h-8 w-8 mx-auto text-secondary mb-4" />
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Investment</h3>
+              <p className="text-2xl font-bold">800 Ksh Commitment</p>
+            </div>
+            <div className="space-y-2">
+              <Zap className="h-8 w-8 mx-auto text-secondary mb-4" />
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Methodology</h3>
+              <p className="text-2xl font-bold">100% Practical Labs</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Meet Your Mentor Section */}
-      <section id="mentor" className="py-24 bg-card relative overflow-hidden border-y">
+      <section id="mentor" className="py-32 bg-card relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="order-2 lg:order-1">
-              <Badge className="mb-4 bg-primary text-primary-foreground">Your Lead Engineer</Badge>
-              <h2 className="text-4xl font-bold mb-6">Stanlley Locke</h2>
-              <p className="text-xl text-primary font-medium mb-6">
+              <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-secondary mb-6">The Lead Engineer</h2>
+              <h3 className="text-4xl lg:text-5xl font-bold mb-8 tracking-tight">Stanlley Locke</h3>
+              <p className="text-xl text-primary font-medium mb-8 leading-relaxed">
                 Full-Stack Software Engineer · Systems Architect · AI & Web Platform Builder
               </p>
-              <div className="space-y-6 text-muted-foreground leading-relaxed">
+              <div className="space-y-8 text-muted-foreground leading-relaxed text-lg">
                 <p>
                   I build production-grade web platforms, developer tooling, and embedded systems — not demos. My work focuses on reliable architecture, reproducible ML pipelines, and solutions that scale.
                 </p>
