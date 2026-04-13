@@ -153,7 +153,36 @@ export default function StudentDashboard() {
                 )}
               </div>
             </CardContent>
-          </Card>
+            {/* Deadlines & Schedules */}
+            <Card className="border-none shadow-xl bg-primary text-white rounded-3xl mt-8">
+              <CardHeader className="border-b border-white/10 pb-4">
+                <CardTitle className="text-xl font-black tracking-tighter uppercase text-secondary">Upcoming & Deadlines</CardTitle>
+                <CardDescription className="font-bold text-white/50 italic">Your learning schedule</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6 font-sans space-y-4">
+                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-lg flex flex-col items-center justify-center flex-shrink-0 text-secondary">
+                    <span className="text-xs font-black uppercase">Apr</span>
+                    <span className="text-lg font-black leading-none">15</span>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Project Submission: React Fundamentals</h4>
+                    <p className="text-xs text-white/50 mt-1 flex items-center gap-1"><Clock className="h-3 w-3" /> Due in 2 days</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                  <div className="w-12 h-12 bg-white/10 rounded-lg flex flex-col items-center justify-center flex-shrink-0 text-white">
+                    <span className="text-xs font-black uppercase">Apr</span>
+                    <span className="text-lg font-black leading-none">18</span>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Live Workshop: state management</h4>
+                    <p className="text-xs text-white/50 mt-1 flex items-center gap-1"><Clock className="h-3 w-3" /> 18:00 UTC</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </StudentLayout>

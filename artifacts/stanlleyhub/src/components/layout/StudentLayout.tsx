@@ -49,7 +49,6 @@ export function StudentLayout({ children }: { children: ReactNode }) {
   const navItems = [
     { href: "/student/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/student/courses", label: "My Courses", icon: BookOpen },
-    { href: "/student/profile", label: "Profile", icon: User },
     { href: "/student/certificate", label: "Certificates", icon: Award },
     { href: "/student/billing", label: "Payments", icon: CreditCard },
   ];
@@ -66,9 +65,9 @@ export function StudentLayout({ children }: { children: ReactNode }) {
       <motion.aside 
         initial={false}
         animate={{ width: isCollapsed ? 100 : 288 }}
-        className="hidden md:flex flex-col bg-primary border-r border-primary/10 shadow-2xl relative z-40 overflow-hidden"
+        className="hidden md:flex flex-col bg-primary border-r border-primary/10 shadow-2xl relative z-40"
       >
-        <div className={`p-8 border-b border-white/10 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
+        <div className={`p-8 border-b border-white/10 flex items-center h-[96px] ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
           {!isCollapsed && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -159,9 +158,9 @@ export function StudentLayout({ children }: { children: ReactNode }) {
         {/* Toggle Button */}
         <button 
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-3 top-24 bg-secondary text-primary rounded-full p-1 shadow-lg hover:scale-110 transition-transform hidden border border-primary/20 xl:block"
+          className="absolute -right-3.5 top-24 bg-secondary text-primary rounded-full p-1.5 shadow-lg hover:scale-110 transition-transform hidden border border-white z-50 xl:flex items-center justify-center"
         >
-          {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          {isCollapsed ? <ChevronRight size={16} className="ml-0.5" /> : <ChevronLeft size={16} className="mr-0.5" />}
         </button>
       </motion.aside>
 
