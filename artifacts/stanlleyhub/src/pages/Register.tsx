@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useCreateUser } from "@workspace/api-client-react";
+import { useRegisterStudent } from "@workspace/api-client-react";
 import { useLocation, Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, ArrowLeft, Mail, Lock, User, Phone, CheckCircle2 } from "lucide-react";
@@ -26,7 +26,7 @@ const registerSchema = z.object({
 export default function Register() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
-  const createUser = useCreateUser();
+  const registerStudent = useRegisterStudent();
   const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -42,7 +42,7 @@ export default function Register() {
   });
 
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
-    createUser.mutate(
+    registerStudent.mutate(
       { 
         data: {
           firstName: values.firstName,
@@ -50,7 +50,6 @@ export default function Register() {
           email: values.email,
           phone: values.phone,
           password: values.password,
-          role: "student"
         } 
       },
       {
@@ -248,8 +247,8 @@ export default function Register() {
                       />
                     </div>
                     
-                    <Button type="submit" className="w-full h-16 text-sm font-black uppercase tracking-widest rounded-2xl bg-primary text-secondary hover:bg-primary/95 shadow-xl transition-all hover:scale-[1.01] active:translate-y-px" disabled={createUser.isPending}>
-                      {createUser.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                    <Button type="submit" className="w-full h-16 text-sm font-black uppercase tracking-widest rounded-2xl bg-primary text-secondary hover:bg-primary/95 shadow-xl transition-all hover:scale-[1.01] active:translate-y-px" disabled={registerStudent.isPending}>
+                      {registerStudent.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                       Create Account
                     </Button>
                   </form>
