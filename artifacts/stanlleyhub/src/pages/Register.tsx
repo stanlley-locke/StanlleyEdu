@@ -26,7 +26,7 @@ const registerSchema = z.object({
 export default function Register() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
-  const registerStudent = useRegisterStudent();
+  const registerMutation = useRegisterStudent();
   const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -42,7 +42,7 @@ export default function Register() {
   });
 
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
-    registerStudent.mutate(
+    registerMutation.mutate(
       { 
         data: {
           firstName: values.firstName,
@@ -128,7 +128,7 @@ export default function Register() {
                               <div className="relative">
                                 <User className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/30" />
                                 <Input 
-                                  placeholder="John" 
+                                  placeholder="First Name" 
                                   className="h-14 border-black/5 bg-[#FAFAFA] focus:bg-white focus:border-secondary pl-12 pr-6 rounded-2xl text-sm font-bold tracking-tight transition-all" 
                                   {...field} 
                                 />
@@ -148,7 +148,7 @@ export default function Register() {
                               <div className="relative">
                                 <User className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/30" />
                                 <Input 
-                                  placeholder="Doe" 
+                                  placeholder="Last Name" 
                                   className="h-14 border-black/5 bg-[#FAFAFA] focus:bg-white focus:border-secondary pl-12 pr-6 rounded-2xl text-sm font-bold tracking-tight transition-all" 
                                   {...field} 
                                 />
@@ -247,8 +247,8 @@ export default function Register() {
                       />
                     </div>
                     
-                    <Button type="submit" className="w-full h-16 text-sm font-black uppercase tracking-widest rounded-2xl bg-primary text-secondary hover:bg-primary/95 shadow-xl transition-all hover:scale-[1.01] active:translate-y-px" disabled={registerStudent.isPending}>
-                      {registerStudent.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                    <Button type="submit" className="w-full h-16 text-sm font-black uppercase tracking-widest rounded-2xl bg-primary text-secondary hover:bg-primary/95 shadow-xl transition-all hover:scale-[1.01] active:translate-y-px" disabled={registerMutation.isPending}>
+                      {registerMutation.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                       Create Account
                     </Button>
                   </form>
