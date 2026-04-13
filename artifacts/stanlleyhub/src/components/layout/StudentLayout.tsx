@@ -65,64 +65,37 @@ export function StudentLayout({ children }: { children: ReactNode }) {
       <motion.aside 
         initial={false}
         animate={{ width: isCollapsed ? 100 : 288 }}
-        className="hidden md:flex flex-col bg-primary border-r border-primary/10 shadow-2xl relative z-40"
+        className="hidden md:flex flex-col bg-primary border-r border-primary/10 shadow-2xl relative z-40 transition-all duration-300"
       >
-        <div className={`p-8 border-b border-white/10 flex items-center h-[96px] ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
-          {!isCollapsed && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <Link href="/" className="font-black text-2xl text-white tracking-tighter uppercase whitespace-nowrap">
-                Stanlley<span className="text-secondary">Hub</span>
-              </Link>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mt-2">Student Portal</p>
-            </motion.div>
-          )}
-          {isCollapsed && (
-             <Link href="/" className="font-black text-2xl text-secondary tracking-tighter">S<span className="text-white">H</span></Link>
-          )}
-        </div>
+        <div className="flex-1 w-full flex flex-col overflow-hidden h-full">
+          <div className={`p-8 border-b border-white/10 flex items-center h-[96px] ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
+            {!isCollapsed && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Link href="/" className="font-black text-2xl text-white tracking-tighter uppercase whitespace-nowrap">
+                  Stanlley<span className="text-secondary">Hub</span>
+                </Link>
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mt-2 whitespace-nowrap">Student Portal</p>
+              </motion.div>
+            )}
+            {isCollapsed && (
+               <Link href="/" className="font-black text-2xl text-secondary tracking-tighter">S<span className="text-white">H</span></Link>
+            )}
+          </div>
 
-        <div className="flex-1 flex flex-col justify-between py-6">
-          <nav className="px-4 space-y-2">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <div className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 cursor-pointer group relative ${
-                  location === item.href 
-                    ? "bg-white/10 text-secondary font-black shadow-lg" 
-                    : "text-white/60 font-bold hover:bg-white/5 hover:text-white"
-                } ${isCollapsed ? 'justify-center' : ''}`}>
-                  <item.icon className={`h-5 w-5 shrink-0 ${location === item.href ? "text-secondary" : "text-white/30 group-hover:text-white"}`} />
-                  {!isCollapsed && (
-                    <motion.span 
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="text-sm tracking-tight whitespace-nowrap"
-                    >
-                      {item.label}
-                    </motion.span>
-                  )}
-                  {isCollapsed && (
-                    <div className="absolute left-full ml-4 px-3 py-1 bg-primary text-white text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
-                      {item.label}
-                    </div>
-                  )}
-                </div>
-              </Link>
-            ))}
-            
-            <div className={`pt-4 mt-4 border-t border-white/5 ${isCollapsed ? 'mx-4' : 'mx-0'}`}>
-               {!isCollapsed && <p className="px-4 text-[10px] font-bold text-white/20 uppercase tracking-widest mb-2">Support</p>}
-               {secondaryNavItems.map((item) => (
+          <div className="flex-1 flex flex-col justify-between py-6">
+            <nav className="px-4 space-y-2">
+              {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <div className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 cursor-pointer group relative ${
                     location === item.href 
-                      ? "bg-white/10 text-secondary font-black" 
+                      ? "bg-white/10 text-secondary font-black shadow-lg" 
                       : "text-white/60 font-bold hover:bg-white/5 hover:text-white"
                   } ${isCollapsed ? 'justify-center' : ''}`}>
-                    <item.icon className="h-5 w-5 shrink-0 text-white/30 group-hover:text-white" />
+                    <item.icon className={`h-5 w-5 shrink-0 ${location === item.href ? "text-secondary" : "text-white/30 group-hover:text-white"}`} />
                     {!isCollapsed && (
                       <motion.span 
                         initial={{ opacity: 0, x: -10 }}
@@ -140,25 +113,54 @@ export function StudentLayout({ children }: { children: ReactNode }) {
                   </div>
                 </Link>
               ))}
-            </div>
-          </nav>
+              
+              <div className={`pt-4 mt-4 border-t border-white/5 ${isCollapsed ? 'mx-4' : 'mx-0'}`}>
+                 {!isCollapsed && <p className="px-4 text-[10px] font-bold text-white/20 uppercase tracking-widest mb-2 whitespace-nowrap">Support</p>}
+                 {secondaryNavItems.map((item) => (
+                  <Link key={item.href} href={item.href}>
+                    <div className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 cursor-pointer group relative ${
+                      location === item.href 
+                        ? "bg-white/10 text-secondary font-black" 
+                        : "text-white/60 font-bold hover:bg-white/5 hover:text-white"
+                    } ${isCollapsed ? 'justify-center' : ''}`}>
+                      <item.icon className="h-5 w-5 shrink-0 text-white/30 group-hover:text-white" />
+                      {!isCollapsed && (
+                        <motion.span 
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          className="text-sm tracking-tight whitespace-nowrap"
+                        >
+                          {item.label}
+                        </motion.span>
+                      )}
+                      {isCollapsed && (
+                        <div className="absolute left-full ml-4 px-3 py-1 bg-primary text-white text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
+                          {item.label}
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </nav>
 
-          <div className="px-4 border-t border-white/10 pt-6">
-            <Button 
-              variant="ghost" 
-              className={`w-full text-red-400 hover:text-red-300 hover:bg-red-500/10 font-bold rounded-xl transition-all duration-300 ${isCollapsed ? 'px-0 justify-center' : 'justify-start'}`} 
-              onClick={handleLogout}
-            >
-              <LogOut className={`${isCollapsed ? '' : 'mr-2'} h-5 w-5 shrink-0`} />
-              {!isCollapsed && <span>Logout</span>}
-            </Button>
+            <div className="px-4 border-t border-white/10 pt-6">
+              <Button 
+                variant="ghost" 
+                className={`w-full text-red-400 hover:text-red-300 hover:bg-red-500/10 font-bold rounded-xl transition-all duration-300 ${isCollapsed ? 'px-0 justify-center' : 'justify-start'}`} 
+                onClick={handleLogout}
+              >
+                <LogOut className={`${isCollapsed ? '' : 'mr-2'} h-5 w-5 shrink-0`} />
+                {!isCollapsed && <span className="whitespace-nowrap">Logout</span>}
+              </Button>
+            </div>
           </div>
         </div>
 
         {/* Toggle Button */}
         <button 
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-3.5 top-24 bg-secondary text-primary rounded-full p-1.5 shadow-lg hover:scale-110 transition-transform hidden border border-white z-50 xl:flex items-center justify-center"
+          className="absolute -right-3.5 top-24 bg-secondary text-primary rounded-full p-1.5 shadow-lg hover:scale-110 transition-transform hidden border border-white z-50 xl:flex items-center justify-center cursor-pointer"
         >
           {isCollapsed ? <ChevronRight size={16} className="ml-0.5" /> : <ChevronLeft size={16} className="mr-0.5" />}
         </button>

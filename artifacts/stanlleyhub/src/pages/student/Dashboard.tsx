@@ -153,6 +153,8 @@ export default function StudentDashboard() {
                 )}
               </div>
             </CardContent>
+          </Card>
+          <div>
             {/* Deadlines & Schedules */}
             <Card className="border-none shadow-xl bg-primary text-white rounded-3xl mt-8">
               <CardHeader className="border-b border-white/10 pb-4">
