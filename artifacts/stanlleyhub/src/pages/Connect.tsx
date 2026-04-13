@@ -88,7 +88,7 @@ export default function Connect() {
               className="space-y-6"
             >
               <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-black uppercase tracking-[0.3em]">Direct Integration</span>
-              <h1 className="text-7xl lg:text-9xl font-black text-primary tracking-tighter leading-none">
+              <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-primary tracking-tighter leading-none">
                 Connect <br/>
                 <span className="text-secondary italic">Architects.</span>
               </h1>
@@ -192,9 +192,9 @@ export default function Connect() {
       {/* FAQ Section */}
       <section className="py-40 bg-[#FAFAFA] border-y border-black/5 overflow-hidden">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-24">
+          <div className="text-center mb-24 flex flex-col items-center">
             <span className="text-xs font-black uppercase tracking-[0.6em] text-secondary mb-8 block font-sans">Common Architect Queries</span>
-            <h2 className="text-5xl lg:text-7xl font-bold text-primary tracking-tighter mb-8 leading-none">The F.A.Q.</h2>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-primary tracking-tighter mb-8 leading-none">The F.A.Q.</h2>
           </div>
 
           <Accordion type="single" collapsible className="w-full space-y-6">

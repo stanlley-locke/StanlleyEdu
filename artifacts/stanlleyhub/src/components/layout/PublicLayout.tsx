@@ -97,7 +97,7 @@ export function PublicLayout({ children }: { children: ReactNode }) {
 
           {/* Mobile Menu - Liquid Glass Style */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-[calc(100%+12px)] left-0 w-full bg-background/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 space-y-4 animate-in slide-in-from-top-4 duration-500 overflow-hidden shadow-2xl">
+            <div className="md:hidden absolute top-[calc(100%+12px)] left-0 w-full bg-background/95 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-6 space-y-4 animate-in slide-in-from-top-4 duration-500 overflow-y-auto max-h-[70vh] shadow-2xl z-[60]">
               <nav className="flex flex-col gap-2">
                 <Link href="/courses" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Programs</Link>
                 <Link href="/mentor" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Mentor</Link>

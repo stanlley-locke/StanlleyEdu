@@ -71,7 +71,7 @@ export default function Mentor() {
             >
               <div className="space-y-4">
                 <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-black uppercase tracking-[0.3em]">Lead Architect</span>
-                <h1 className="text-7xl lg:text-9xl font-black text-primary tracking-tighter leading-none">
+                <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-primary tracking-tighter leading-none">
                   Stanlley <br/>
                   <span className="text-secondary italic">Locke.</span>
                 </h1>
@@ -134,7 +134,7 @@ export default function Mentor() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto mb-24">
             <span className="text-xs font-black uppercase tracking-[0.8em] text-secondary mb-8 block">Architect's Philosopy</span>
-            <h2 className="text-5xl lg:text-7xl font-bold text-white tracking-tighter mb-10 leading-none">Practical Intelligence.</h2>
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white tracking-tighter mb-10 leading-none">Practical Intelligence.</h2>
             <p className="text-xl text-white/70 font-bold max-w-2xl mx-auto leading-relaxed">
               We eliminate the fluff found in traditional education. Our goal is to build engineers who can ship production-grade systems in record time.
             </p>
@@ -167,7 +167,7 @@ export default function Mentor() {
           <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-10">
             <div className="max-w-2xl">
               <span className="text-xs font-black uppercase tracking-[0.6em] text-secondary mb-8 block font-sans">Portfolio of Work</span>
-              <h2 className="text-6xl lg:text-8xl font-black text-primary tracking-tighter leading-none mb-8">Engineering Artifacts.</h2>
+              <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-primary tracking-tighter leading-none mb-8">Engineering Artifacts.</h2>
               <p className="text-xl text-muted-foreground font-bold leading-tight">
                 Experimental frameworks, enterprise tools, and deep-learning infrastructure built to push the limits of modern software.
               </p>
@@ -215,7 +215,7 @@ export default function Mentor() {
             <div className="space-y-16">
               <div className="space-y-8">
                 <span className="text-xs font-black uppercase tracking-[0.5em] text-secondary block">Leadership Journey</span>
-                <h2 className="text-6xl lg:text-7xl font-black text-primary tracking-tighter leading-tight">Mastering the Tools <br/>of the Trade.</h2>
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-primary tracking-tighter leading-tight">Mastering the Tools <br/>of the Trade.</h2>
                 <p className="text-xl text-muted-foreground font-bold leading-relaxed max-w-xl italic border-l-4 border-secondary pl-8">
                   "It's not about the programming language; it's about the ability to solve complex problems using the most efficient architectural patterns."
                 </p>

@@ -61,7 +61,7 @@ export default function Home() {
                 </span>
               </div>
               
-              <h1 className="text-7xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85]">
+              <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85]">
                 Master Skills <br/>
                 <span className="text-secondary">That Matter.</span>
               </h1>
@@ -110,7 +110,7 @@ export default function Home() {
             <div className="lg:w-1/2 space-y-16">
               <div className="space-y-6">
                 <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-black uppercase tracking-[0.3em] mb-4">Ongoing Cohort</span>
-                <h2 className="text-7xl lg:text-9xl font-bold text-primary tracking-tighter leading-none mb-8">
+                <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold text-primary tracking-tighter leading-none mb-8">
                   Engineering <br/>Registry.
                 </h2>
                 <p className="text-2xl text-muted-foreground font-bold leading-tight max-w-xl">
@@ -254,7 +254,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center max-w-4xl mx-auto mb-32">
             <span className="text-xs font-black uppercase tracking-[0.6em] text-secondary mb-8 block">Engineering Tracks</span>
-            <h2 className="text-7xl lg:text-9xl font-bold mb-10 tracking-tighter text-primary text-nowrap">Practical Stack.</h2>
+            <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold mb-10 tracking-tighter text-primary text-balance lg:text-nowrap">Practical Stack.</h2>
             <p className="text-2xl text-muted-foreground font-bold tracking-tight max-w-3xl mx-auto leading-relaxed">
               We don't teach "tutorials." We build <span className="text-primary">production-ready systems</span> using the industry's most in-demand tools.
             </p>
@@ -303,7 +303,7 @@ export default function Home() {
             className="space-y-12 bg-white border border-black/10 p-16 lg:p-32 rounded-[5rem] shadow-[0_60px_120px_rgba(0,0,0,0.04)]"
           >
             <span className="text-xs font-black uppercase tracking-[0.8em] text-secondary mb-10 block">Final Enrollment Call</span>
-            <h3 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-primary">
+            <h3 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-primary">
               Join the May Cohort Today.
             </h3>
             <p className="text-2xl lg:text-3xl text-muted-foreground font-bold max-w-4xl mx-auto leading-tight">

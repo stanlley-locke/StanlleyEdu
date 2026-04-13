@@ -196,7 +196,7 @@ export default function Register() {
                 })}
               </div>
 
-              <h3 className="text-4xl lg:text-5xl font-black text-primary tracking-tighter mb-4 leading-none">
+              <h3 className="text-3xl md:text-5xl font-black text-primary tracking-tighter mb-4 leading-none">
                 {step === 1 ? "Identity." : step === 2 ? "Cohort Track." : "Commitment."}
               </h3>
               <p className="text-muted-foreground font-semibold text-lg">
@@ -216,15 +216,15 @@ export default function Register() {
               >
                 <Form {...form}>
                   <form className="space-y-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                       <FormField
                         control={form.control}
                         name="firstName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-black uppercase tracking-widest text-muted-foreground">First Name</FormLabel>
+                            <FormLabel className="text-[10px] md:text-xs font-black uppercase tracking-widest text-muted-foreground">First Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Your first name" className="h-14 border-black/10 rounded-xl px-6" {...field} />
+                              <Input placeholder="Your first name" className="h-14 md:h-16 border-black/10 rounded-xl px-6 bg-white" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -235,9 +235,9 @@ export default function Register() {
                         name="lastName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-black uppercase tracking-widest text-muted-foreground">Last Name</FormLabel>
+                            <FormLabel className="text-[10px] md:text-xs font-black uppercase tracking-widest text-muted-foreground">Last Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Your last name" className="h-14 border-black/10 rounded-xl px-6" {...field} />
+                              <Input placeholder="Your last name" className="h-14 md:h-16 border-black/10 rounded-xl px-6 bg-white" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
