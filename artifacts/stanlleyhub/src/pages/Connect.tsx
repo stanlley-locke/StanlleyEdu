@@ -216,35 +216,6 @@ export default function Connect() {
         </div>
       </section>
 
-      {/* Global Reach Section */}
-      <section className="py-40 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-             <div className="order-2 lg:order-1 relative">
-                <div className="aspect-video bg-primary/5 rounded-[4rem] flex items-center justify-center p-12 overflow-hidden border border-black/5 shadow-2xl">
-                  {/* Visual Representation of Global Hub */}
-                  <div className="absolute inset-0 opacity-10 bg-[url('/hero_background.jpg')] bg-cover grayscale" />
-                  <Globe className="h-40 w-40 text-secondary/40 relative z-10" />
-                </div>
-             </div>
-             
-             <div className="order-1 lg:order-2 space-y-12">
-               <span className="text-xs font-black uppercase tracking-[0.5em] text-secondary block font-sans">StanlleyHub Presence</span>
-               <h2 className="text-6xl lg:text-7xl font-black text-primary tracking-tighter leading-tight">Hybrid Labs.<br/><span className="text-secondary italic">Nairobi Powered.</span></h2>
-               <p className="text-xl text-muted-foreground font-bold leading-relaxed">
-                 While our labs are based in Nairobi, our engineering community is global. We operate on a hybrid model, combining intense virtual mentorship with physical engineering meetups.
-               </p>
-               <div className="flex items-center gap-6 p-8 bg-[#FAFAFA] border border-black/5 rounded-[2.5rem]">
-                  <MapPin className="h-10 w-10 text-secondary" />
-                  <div>
-                    <h5 className="font-black text-primary uppercase tracking-widest text-xs">Primary Hub</h5>
-                    <p className="text-sm text-muted-foreground font-bold">Nairobi, Kenya — Engineering District</p>
-                  </div>
-               </div>
-             </div>
-          </div>
-        </div>
-      </section>
     </PublicLayout>
   );
 }

@@ -32,10 +32,10 @@ export function PublicLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
       {/* Liquid Glass Floating Navbar */}
       <div className="fixed top-6 left-0 w-full z-50 px-4 pointer-events-none">
-        <header className={`mx-auto max-w-7xl transition-all duration-500 pointer-events-auto rounded-[2rem] border border-white/20 ${
+        <header className={`mx-auto max-w-7xl transition-all duration-500 pointer-events-auto rounded-[2rem] border border-black/5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${
           isScrolled 
-            ? "bg-background/40 backdrop-blur-[40px] shadow-[0_8px_32px_rgba(0,0,0,0.2)] py-2" 
-            : "bg-white/10 backdrop-blur-[20px] py-4"
+            ? "bg-background/60 backdrop-blur-[40px] shadow-[0_8px_32px_rgba(0,0,0,0.1)] py-2 border-white/20" 
+            : "bg-white/40 backdrop-blur-[15px] py-4"
         }`}>
           <div className="container mx-auto px-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group transition-transform hover:scale-105 active:scale-95">
@@ -53,15 +53,15 @@ export function PublicLayout({ children }: { children: ReactNode }) {
 
             <nav className="hidden md:flex items-center gap-10">
               <Link href="/courses" className="relative group py-2">
-                <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Programs</span>
+                <span className="text-sm font-semibold text-primary/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Programs</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
               <Link href="/mentor" className="relative group py-2">
-                <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Mentor</span>
+                <span className="text-sm font-semibold text-primary/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Mentor</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
               <Link href="/connect" className="relative group py-2">
-                <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Connect</span>
+                <span className="text-sm font-semibold text-primary/80 group-hover:text-secondary transition-colors italic uppercase tracking-widest">Connect</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
             </nav>
