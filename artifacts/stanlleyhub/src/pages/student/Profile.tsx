@@ -11,7 +11,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Loader2, User } from "lucide-react";
+import { Loader2, User, Settings } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const profileSchema = z.object({
@@ -95,30 +95,35 @@ export default function StudentProfile() {
     <StudentLayout>
       <div className="max-w-3xl mx-auto space-y-8">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">My Profile</h1>
-          <p className="text-muted-foreground mt-2">Manage your personal information.</p>
+          <h1 className="text-3xl font-black text-primary tracking-tight uppercase">My <span className="text-secondary">Profile</span></h1>
+          <p className="text-slate-500 mt-2">Manage your personal information and preferences.</p>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
-            <CardDescription>Update your contact details and bio.</CardDescription>
+        <Card className="border-none shadow-xl bg-white rounded-3xl overflow-hidden">
+          <CardHeader className="bg-primary text-white p-8">
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle className="text-xl font-bold">Personal Information</CardTitle>
+                <CardDescription className="text-slate-300 mt-1">Update your contact details and bio.</CardDescription>
+              </div>
+              <Settings className="text-secondary h-6 w-6" />
+            </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-8">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="flex items-center gap-6 mb-6">
-                  <div className="h-24 w-24 rounded-full bg-muted flex items-center justify-center border-4 border-background shadow-sm overflow-hidden">
+                <div className="flex items-center gap-6 mb-8 pb-8 border-b border-slate-100">
+                  <div className="h-24 w-24 rounded-full bg-slate-100 flex items-center justify-center border-4 border-white shadow-md overflow-hidden relative group">
                     {profile?.avatarUrl ? (
                       <img src={profile.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                     ) : (
-                      <User className="h-10 w-10 text-muted-foreground" />
+                      <User className="h-10 w-10 text-slate-400 group-hover:text-secondary transition-colors" />
                     )}
                   </div>
                   <div>
-                    <h3 className="font-medium text-lg">{profile?.firstName} {profile?.lastName}</h3>
-                    <p className="text-muted-foreground">{profile?.email}</p>
-                    <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md inline-block mt-2 font-medium">
+                    <h3 className="font-bold text-xl text-primary">{profile?.firstName} {profile?.lastName}</h3>
+                    <p className="text-slate-500">{profile?.email}</p>
+                    <div className="text-[10px] bg-secondary/20 text-primary px-3 py-1 rounded-full inline-block mt-2 font-black uppercase tracking-wider">
                       Student Account
                     </div>
                   </div>
@@ -185,8 +190,8 @@ export default function StudentProfile() {
                   )}
                 />
 
-                <div className="flex justify-end pt-4 border-t">
-                  <Button type="submit" disabled={updateProfile.isPending}>
+                <div className="flex justify-end pt-8 mt-8 border-t border-slate-100">
+                  <Button type="submit" disabled={updateProfile.isPending} className="bg-primary text-white hover:bg-primary/90 font-bold rounded-xl px-8 py-6">
                     {updateProfile.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                     Save Changes
                   </Button>

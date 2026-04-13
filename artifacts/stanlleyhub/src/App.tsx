@@ -18,6 +18,9 @@ import StudentDashboard from "@/pages/student/Dashboard";
 import StudentCourses from "@/pages/student/Courses";
 import StudentProfile from "@/pages/student/Profile";
 import StudentCertificate from "@/pages/student/Certificate";
+import StudentBilling from "@/pages/student/Billing";
+import StudentCommunity from "@/pages/student/Community";
+import StudentSupport from "@/pages/student/Support";
 
 // Admin Pages
 import AdminDashboard from "@/pages/admin/Dashboard";
@@ -78,6 +81,18 @@ function Router() {
       </Route>
       <Route path="/student/certificate">
         {() => <ProtectedRoute allowedRole="student" component={StudentCertificate} />}
+      </Route>
+      <Route path="/student/billing">
+        {() => <ProtectedRoute allowedRole="student" component={StudentBilling} />}
+      </Route>
+      <Route path="/student/community">
+        {() => <ProtectedRoute allowedRole="student" component={StudentCommunity} />}
+      </Route>
+      <Route path="/student/support">
+        {() => <ProtectedRoute allowedRole="student" component={StudentSupport} />}
+      </Route>
+      <Route path="/student/settings">
+        {() => <ProtectedRoute allowedRole="student" component={StudentProfile} />}
       </Route>
 
       {/* Admin Panel */}

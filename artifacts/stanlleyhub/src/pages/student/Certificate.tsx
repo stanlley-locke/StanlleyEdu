@@ -37,9 +37,9 @@ export default function StudentCertificate() {
   return (
     <StudentLayout>
       <div className="max-w-4xl mx-auto space-y-8">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight">My Certificates</h1>
-          <p className="text-muted-foreground mt-2">
+        <div>
+          <h1 className="text-3xl font-black text-primary tracking-tight uppercase">My <span className="text-secondary">Certificates</span></h1>
+          <p className="text-slate-500 mt-2">
             View and download your earned certificates.
           </p>
         </div>
@@ -51,33 +51,33 @@ export default function StudentCertificate() {
             transition={{ duration: 0.5 }}
             className="print:shadow-none print:border-none"
           >
-            <Card className="overflow-hidden border-2 border-primary/20 shadow-xl print:shadow-none print:border-none print:bg-white print:text-black">
-              <div id="certificate-content" className="bg-gradient-to-r from-primary/10 via-background to-primary/10 p-12 text-center border-b border-border/50 relative print:bg-white print:from-white print:to-white print:p-8">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-background to-background print:hidden" />
-                <Award className="h-20 w-20 text-primary mx-auto mb-6 relative z-10 print:text-black" />
-                <h2 className="text-xl text-muted-foreground tracking-[0.2em] uppercase font-medium mb-4 relative z-10 print:text-gray-500">Certificate of Completion</h2>
-                <h3 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 relative z-10 print:text-black">{profile?.firstName} {profile?.lastName}</h3>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto relative z-10 print:text-gray-600">
-                  Has successfully completed the comprehensive <strong className="text-foreground print:text-black">{progress?.currentCourse || "Software Engineering Bootcamp"}</strong> program at StanlleyHub.
+            <Card className="overflow-hidden border-none shadow-xl bg-white rounded-3xl print:shadow-none print:border-none print:bg-white print:text-black">
+              <div id="certificate-content" className="bg-gradient-to-br from-primary/5 via-white to-secondary/5 p-16 text-center border-b border-slate-100 relative print:bg-white print:from-white print:to-white print:p-8">
+                <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-background to-background print:hidden pointer-events-none" />
+                <Award className="h-24 w-24 text-secondary mx-auto mb-8 relative z-10 print:text-black" />
+                <h2 className="text-2xl text-primary/60 tracking-[0.3em] uppercase font-bold mb-6 relative z-10 print:text-gray-500">Certificate of Completion</h2>
+                <h3 className="text-5xl md:text-6xl font-serif font-black text-primary mb-8 relative z-10 print:text-black">{profile?.firstName} {profile?.lastName}</h3>
+                <p className="text-xl text-slate-600 max-w-2xl mx-auto relative z-10 print:text-gray-600 leading-relaxed">
+                  Has successfully completed the comprehensive <strong className="text-primary print:text-black">{progress?.currentCourse || "Software Engineering Bootcamp"}</strong> program at StanlleyHub.
                 </p>
                 <div className="mt-12 flex justify-center gap-12 text-left relative z-10">
                   <div className="text-center">
-                    <div className="border-b border-primary/30 w-48 mb-2 pb-2 print:border-black">
-                      <span className="font-serif italic text-xl block text-center">Stanlley Locke</span>
+                    <div className="border-b-2 border-secondary w-48 mb-3 pb-3 print:border-black">
+                      <span className="font-serif italic text-2xl block text-center text-primary">Stanlley Locke</span>
                     </div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-wider print:text-gray-500">Instructor</div>
+                    <div className="text-sm font-bold text-slate-400 uppercase tracking-widest print:text-gray-500">Instructor</div>
                   </div>
                   <div className="text-center">
-                    <div className="border-b border-primary/30 w-48 mb-2 pb-2 print:border-black">
-                      <span className="font-serif text-xl block text-center">{new Date().toLocaleDateString()}</span>
+                    <div className="border-b-2 border-secondary w-48 mb-3 pb-3 print:border-black">
+                      <span className="font-serif text-2xl block text-center text-primary">{new Date().toLocaleDateString()}</span>
                     </div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-wider print:text-gray-500">Date</div>
+                    <div className="text-sm font-bold text-slate-400 uppercase tracking-widest print:text-gray-500">Date</div>
                   </div>
                 </div>
               </div>
-              <CardContent className="bg-card flex justify-center py-6 print:hidden">
-                <Button className="gap-2" size="lg" onClick={handleDownload}>
-                  <Download className="h-4 w-4" /> Download PDF
+              <CardContent className="bg-white flex justify-center py-8 print:hidden">
+                <Button className="gap-2 bg-secondary text-primary hover:bg-secondary/90 font-bold rounded-xl px-8 py-6 text-lg" onClick={handleDownload}>
+                  <Download className="h-5 w-5" /> Download PDF
                 </Button>
               </CardContent>
             </Card>
@@ -103,22 +103,23 @@ export default function StudentCertificate() {
             `}} />
           </motion.div>
         ) : (
-          <Card className="text-center py-20 border-dashed bg-muted/30">
+          <Card className="text-center py-24 border-none shadow-xl bg-white rounded-3xl">
             <CardContent>
-              <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
-                <Lock className="h-8 w-8 text-muted-foreground" />
+              <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-8 relative">
+                <div className="absolute inset-0 rounded-full border-4 border-slate-100 border-dashed animate-[spin_10s_linear_infinite]" />
+                <Lock className="h-10 w-10 text-slate-300" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Certificate Locked</h3>
-              <p className="text-muted-foreground max-w-md mx-auto mb-8">
-                You need to complete your current course ({progress?.progressPercent || 0}% done) to unlock your certificate. Keep up the great work!
+              <h3 className="text-2xl font-black text-primary mb-4">Certificate Locked</h3>
+              <p className="text-slate-500 max-w-md mx-auto mb-10 leading-relaxed">
+                You need to complete your current course ({progress?.progressPercent || 0}% done) to unlock your certificate. Keep up the great work, you're almost there!
               </p>
-              <div className="w-full max-w-md mx-auto bg-muted rounded-full h-3 mb-2">
+              <div className="w-full max-w-md mx-auto bg-slate-100 rounded-full h-4 mb-3 overflow-hidden shadow-inner">
                 <div 
-                  className="bg-primary h-3 rounded-full transition-all" 
+                  className="bg-secondary h-full rounded-full transition-all duration-1000 ease-out" 
                   style={{ width: `${progress?.progressPercent || 0}%` }}
                 />
               </div>
-              <p className="text-sm font-medium">{progress?.progressPercent || 0}% Complete</p>
+              <p className="text-sm font-bold text-primary uppercase tracking-wider">{progress?.progressPercent || 0}% Complete</p>
             </CardContent>
           </Card>
         )}
