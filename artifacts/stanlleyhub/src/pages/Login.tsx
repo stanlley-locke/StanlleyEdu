@@ -5,7 +5,7 @@ import { useLoginUser } from "@workspace/api-client-react";
 import { useAuth } from "@/lib/auth";
 import { useLocation, Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, ShieldCheck, Terminal, Cpu, ArrowLeft, KeyRound } from "lucide-react";
+import { Loader2, ArrowLeft, Mail, Lock, UserCircle2 } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,8 +13,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { motion } from "framer-motion";
 
 const loginSchema = z.object({
-  email: z.string().email("Valid engineering credential required"),
-  password: z.string().min(1, "Access key required"),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(1, "Password is required"),
 });
 
 export default function Login() {
@@ -38,8 +38,8 @@ export default function Login() {
         onSuccess: (data) => {
           login(data.token, data.user.role, data.user);
           toast({
-            title: "Access Granted",
-            description: "System connection established.",
+            title: "Welcome Back",
+            description: "You have successfully signed in.",
           });
           if (data.user.role === "admin") {
             setLocation("/admin/dashboard");
@@ -49,8 +49,8 @@ export default function Login() {
         },
         onError: (error) => {
           toast({
-            title: "Access Denied",
-            description: "Invalid credentials or system timeout.",
+            title: "Login Failed",
+            description: "Please check your email and password.",
             variant: "destructive",
           });
         },
@@ -59,98 +59,58 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white font-sans selection:bg-secondary/30">
-      {/* Visual Terminal Panel (Desktop) */}
-      <div className="hidden lg:flex lg:w-1/2 bg-primary relative overflow-hidden items-center justify-center p-24">
-        {/* Engineering Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-          <svg width="100%" height="100%">
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1" />
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
+    <div className="flex min-h-screen bg-[#FAFAFA] font-sans">
+      {/* Branding Panel */}
+      <div className="hidden lg:flex lg:w-1/2 bg-primary relative items-center justify-center p-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center mix-blend-overlay opacity-20" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary to-transparent" />
         
-        <div className="relative z-10 w-full max-w-lg space-y-16">
-          <Link href="/" className="inline-block group">
-            <div className="flex items-center gap-4">
-               <div className="h-12 w-12 rounded-xl bg-secondary flex items-center justify-center group-hover:rotate-12 transition-transform">
-                 <Terminal className="h-6 w-6 text-primary" />
-               </div>
-               <h1 className="text-3xl font-black tracking-tighter text-white uppercase">Stanlley<span className="text-secondary">Hub</span></h1>
-            </div>
+        <div className="relative z-10 w-full max-w-sm text-center lg:text-left space-y-12">
+          <Link href="/">
+             <h1 className="text-3xl font-black tracking-tighter text-white">Stanlley<span className="text-secondary">Hub</span></h1>
           </Link>
 
-          <div className="space-y-8">
-            <h2 className="text-6xl font-black text-white tracking-tighter leading-none uppercase">
-              Secure <br/>
-              <span className="text-secondary">Engineering</span> <br/>
-              Access.
+          <div className="space-y-6">
+            <h2 className="text-6xl font-black text-white tracking-tighter leading-tight uppercase">
+              Unlock Your <br/>
+              <span className="text-secondary text-5xl">Engineering</span> <br/>
+              Potential.
             </h2>
-            <div className="h-1 w-24 bg-white/20" />
-            <p className="text-lg text-white/40 font-bold leading-relaxed max-w-sm italic">
-              Connect to your development workspace and track architectural progression in real-time.
+            <p className="text-lg text-white/60 font-medium leading-relaxed italic">
+              Access your personalized learning tracks and industry-grade projects.
             </p>
           </div>
-
-          <div className="grid grid-cols-2 gap-8 pt-12 border-t border-white/5">
-             <div className="space-y-2">
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30">System Status</p>
-                <div className="flex items-center gap-2 text-secondary font-black uppercase text-xs">
-                   <div className="h-1.5 w-1.5 rounded-full bg-secondary animate-pulse" />
-                   Operational
-                </div>
-             </div>
-             <div className="space-y-2">
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30">Encrypted</p>
-                <div className="flex items-center gap-2 text-white/80 font-black uppercase text-xs">
-                   <ShieldCheck className="h-4 w-4 text-secondary" />
-                   AES-256
-                </div>
-             </div>
-          </div>
         </div>
-        
-        {/* Decorative Circuitry */}
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 border-[40px] border-white/[0.02] rounded-full" />
       </div>
 
-      {/* Authentication Panel */}
-      <div className="flex-1 flex flex-col items-center justify-center p-8 lg:p-24 relative">
-        <div className="lg:hidden absolute top-8 left-8">
-           <Link href="/" className="text-xl font-black tracking-tighter text-primary uppercase">Stanlley<span className="text-secondary">Hub</span></Link>
-        </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-md space-y-12"
-        >
+      {/* Login Form Panel */}
+      <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-12 lg:p-24 bg-white shadow-[-40px_0_80px_rgba(0,0,0,0.02)]">
+        <div className="w-full max-w-sm space-y-10">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-[10px] font-black uppercase tracking-widest text-primary">
-               <KeyRound className="h-3.5 w-3.5" /> Identity Verification
-            </div>
-            <h3 className="text-5xl font-black text-primary tracking-tighter uppercase leading-none">Authentication.</h3>
+             <div className="lg:hidden mb-8">
+               <h1 className="text-2xl font-black tracking-tighter text-primary">Stanlley<span className="text-secondary">Hub</span></h1>
+             </div>
+             <h3 className="text-4xl font-black text-primary tracking-tighter uppercase leading-none">Sign In.</h3>
+             <p className="text-muted-foreground font-bold tracking-tight italic">Welcome back to the community.</p>
           </div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem className="space-y-4">
-                    <FormLabel className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground flex justify-between items-center">
-                       Credential Email
-                       <Cpu className="h-3 w-3 opacity-30" />
-                    </FormLabel>
+                  <FormItem className="space-y-2">
+                    <FormLabel className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Email Address</FormLabel>
                     <FormControl>
-                      <Input 
-                        placeholder="ID@ENGINEERING.SPACE" 
-                        className="h-16 border-black/5 bg-[#FAFAFA] focus:bg-white focus:border-secondary px-6 rounded-2xl text-sm font-bold uppercase tracking-widest placeholder:opacity-20 transition-all" 
-                        {...field} 
-                      />
+                      <div className="relative">
+                        <Mail className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/30" />
+                        <Input 
+                          placeholder="name@example.com" 
+                          className="h-14 border-black/5 bg-[#FAFAFA] focus:bg-white focus:border-secondary pl-12 pr-6 rounded-2xl text-sm font-bold tracking-tight transition-all" 
+                          {...field} 
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-[10px] font-black uppercase tracking-widest text-destructive" />
                   </FormItem>
@@ -160,48 +120,52 @@ export default function Login() {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <FormItem className="space-y-4">
+                  <FormItem className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <FormLabel className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Access Key</FormLabel>
-                      <Link href="/forgot-password" title="Coming soon" className="text-[10px] font-black uppercase tracking-widest text-secondary hover:underline">Reset Key?</Link>
+                      <FormLabel className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Password</FormLabel>
+                      <Link href="/forgot-password" title="Coming soon" className="text-[10px] font-black uppercase tracking-widest text-secondary hover:underline">Forgot?</Link>
                     </div>
                     <FormControl>
-                      <Input 
-                        type="password" 
-                        placeholder="••••••••••••" 
-                        className="h-16 border-black/5 bg-[#FAFAFA] focus:bg-white focus:border-secondary px-6 rounded-2xl text-sm placeholder:opacity-20 transition-all font-mono" 
-                        {...field} 
-                      />
+                      <div className="relative">
+                        <Lock className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/30" />
+                        <Input 
+                          type="password" 
+                          placeholder="••••••••" 
+                          className="h-14 border-black/5 bg-[#FAFAFA] focus:bg-white focus:border-secondary pl-12 pr-6 rounded-2xl text-sm transition-all" 
+                          {...field} 
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage className="text-[10px] font-black uppercase tracking-widest text-destructive" />
                   </FormItem>
                 )}
               />
               
-              <Button type="submit" className="w-full h-20 text-xs font-black uppercase tracking-[0.3em] rounded-2xl bg-primary text-secondary hover:bg-primary/95 shadow-xl transition-all hover:scale-[1.01] active:translate-y-px" disabled={loginUser.isPending}>
-                {loginUser.isPending ? <Loader2 className="mr-3 h-5 w-5 animate-spin" /> : null}
-                Initiate Connection
+              <Button type="submit" className="w-full h-16 text-sm font-black uppercase tracking-widest rounded-2xl bg-primary text-secondary hover:bg-primary/95 shadow-xl transition-all hover:scale-[1.01] active:translate-y-px" disabled={loginUser.isPending}>
+                {loginUser.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                Sign In
               </Button>
             </form>
           </Form>
 
-          <div className="pt-12 border-t border-black/5 flex flex-col items-center gap-6">
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
-              No workstation authorized?
+          <div className="pt-10 border-t border-black/5 text-center">
+            <p className="text-sm font-bold text-muted-foreground">
+              New here?{" "}
+              <Link href="/register" className="text-secondary hover:underline font-black uppercase tracking-widest ml-2">
+                Create Account
+              </Link>
             </p>
-            <Button asChild variant="outline" className="h-14 px-10 rounded-xl border-black/5 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all">
-              <Link href="/register">Register New Module</Link>
-            </Button>
           </div>
-        </motion.div>
+        </div>
 
-        <div className="absolute bottom-8 text-center">
-           <Link href="/" className="inline-flex items-center gap-2 text-[10px] font-black text-muted-foreground hover:text-primary transition-colors uppercase tracking-[0.2em]">
-             <ArrowLeft className="h-3 w-3" /> System Home
+        <div className="mt-12">
+           <Link href="/" className="inline-flex items-center gap-2 text-[10px] font-black text-muted-foreground/40 hover:text-primary transition-colors uppercase tracking-[0.2em]">
+             <ArrowLeft className="h-3 w-3" /> Back to home
            </Link>
         </div>
       </div>
     </div>
   );
 }
+
 
