@@ -58,7 +58,7 @@ export default function Mentor() {
   return (
     <PublicLayout>
       {/* Mentor Hero Section */}
-      <section className="relative pt-40 pb-20 overflow-hidden bg-white">
+      <section className="relative pt-48 pb-20 overflow-hidden bg-white">
         <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
         
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
@@ -207,45 +207,62 @@ export default function Mentor() {
         </div>
       </section>
 
-      {/* Expertise Stack */}
+      {/* Expertise Stack / CTA */}
       <section className="py-40 bg-[#FAFAFA] border-y border-black/5">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <div className="space-y-12">
-              <span className="text-xs font-black uppercase tracking-[0.5em] text-secondary block font-sans">Lead Stack</span>
-              <h2 className="text-6xl lg:text-7xl font-black text-primary tracking-tighter leading-tight">Mastering the Tools <br/>of the Trade.</h2>
-              <p className="text-xl text-muted-foreground font-bold leading-relaxed max-w-xl italic border-l-4 border-secondary pl-8">
-                "It's not about the programming language; it's about the ability to solve complex problems using the most efficient architectural patterns."
-              </p>
-              
-              <div className="grid sm:grid-cols-2 gap-8 pt-6">
+            {/* Left: Engagement Details */}
+            <div className="space-y-16">
+              <div className="space-y-8">
+                <span className="text-xs font-black uppercase tracking-[0.5em] text-secondary block">Leadership Journey</span>
+                <h2 className="text-6xl lg:text-7xl font-black text-primary tracking-tighter leading-tight">Mastering the Tools <br/>of the Trade.</h2>
+                <p className="text-xl text-muted-foreground font-bold leading-relaxed max-w-xl italic border-l-4 border-secondary pl-8">
+                  "It's not about the programming language; it's about the ability to solve complex problems using the most efficient architectural patterns."
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-8">
                 {[
                   { icon: Code, title: "Backend Systems", desc: "Expertise in Python, Node.js, and optimized SQL/NoSQL architectures." },
                   { icon: Brain, title: "AI Integration", desc: "Building agentic systems and neural pipes using PyTorch and CUDA." },
                   { icon: Terminal, title: "DevOps / Infra", desc: "Docker, Kubernetes, and automated CI/CD pipelines for zero-downtime shipping." },
                   { icon: Cpu, title: "Low-Level Systems", desc: "Working with memory efficiency and high-performance computing frameworks." }
                 ].map((item, i) => (
-                  <div key={i} className="space-y-4">
-                    <div className="h-12 w-12 rounded-xl bg-primary text-white flex items-center justify-center">
+                  <div key={i} className="space-y-4 p-8 bg-white border border-black/5 rounded-[2.5rem] shadow-sm flex flex-col items-start">
+                    <div className="h-12 w-12 rounded-xl bg-primary text-white flex items-center justify-center shrink-0 mb-4">
                       <item.icon className="h-6 w-6" />
                     </div>
-                    <h5 className="font-black text-primary uppercase tracking-widest text-xs">{item.title}</h5>
-                    <p className="text-sm text-muted-foreground font-bold leading-snug">{item.desc}</p>
+                    <div className="flex-1">
+                      <h5 className="font-black text-primary uppercase tracking-widest text-[10px] mb-2">{item.title}</h5>
+                      <p className="text-sm text-muted-foreground font-bold leading-snug">{item.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white p-16 rounded-[4rem] border border-black/10 shadow-2xl relative overflow-hidden group">
+            {/* Right: CTA Card */}
+            <div className="bg-white p-12 lg:p-20 rounded-[4rem] border border-black/10 shadow-2xl relative overflow-hidden group min-h-[600px] flex flex-col justify-center">
                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+               <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 blur-[100px]" />
                <div className="relative z-10 space-y-12">
-                 <div className="space-y-4">
-                   <h3 className="text-4xl font-black tracking-tighter text-primary">Ready to Bridge the Gap?</h3>
-                   <p className="text-muted-foreground font-bold text-lg">Join my next cohort and learn to build production-grade software that matters.</p>
+                 <div className="space-y-6">
+                   <h3 className="text-5xl lg:text-6xl font-black tracking-tighter text-primary leading-none">Ready to Bridge <br/>the Gap?</h3>
+                   <p className="text-muted-foreground font-bold text-xl leading-relaxed">Join my next cohort and learn to build production-grade software that matters.</p>
                  </div>
                  <Button asChild size="lg" className="w-full h-24 rounded-[2rem] bg-primary text-white text-xl font-black uppercase tracking-[0.2em] shadow-2xl shadow-primary/30 transition-all hover:scale-[1.02] active:scale-[0.98]">
                     <a href="/register">Secure Your Seat</a>
                  </Button>
+                 <div className="flex items-center gap-12 pt-6">
+                    <div className="text-center">
+                      <p className="text-2xl font-black text-secondary tracking-tighter">800 Ksh</p>
+                      <p className="text-[10px] uppercase font-black text-muted-foreground tracking-widest">Commitment</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-black text-primary tracking-tighter">3 Months</p>
+                      <p className="text-[10px] uppercase font-black text-muted-foreground tracking-widest">Intensive</p>
+                    </div>
+                 </div>
                </div>
             </div>
           </div>

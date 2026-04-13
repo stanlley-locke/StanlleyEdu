@@ -77,7 +77,7 @@ export default function Connect() {
   return (
     <PublicLayout>
       {/* Connect Hero Section */}
-      <section className="relative pt-40 pb-20 overflow-hidden bg-white">
+      <section className="relative pt-48 pb-20 overflow-hidden bg-white">
         <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
         
         <div className="container mx-auto px-4 relative z-10 max-w-7xl">
@@ -113,7 +113,7 @@ export default function Connect() {
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-8">
+              <div className="grid sm:grid-cols-2 gap-8 items-stretch">
                 {CONTACT_CHANNELS.map((channel, i) => (
                   <motion.a
                     key={i}
@@ -124,14 +124,14 @@ export default function Connect() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-8 rounded-[2.5rem] bg-[#FAFAFA] border border-black/5 hover:border-secondary transition-all duration-500 group flex flex-col justify-between h-56"
+                    className="p-8 rounded-[2.5rem] bg-[#FAFAFA] border border-black/5 hover:border-secondary transition-all duration-500 group flex flex-col justify-between"
                   >
-                    <div className={`h-12 w-12 rounded-xl flex items-center justify-center ${channel.color}`}>
+                    <div className={`h-12 w-12 rounded-xl flex items-center justify-center ${channel.color} mb-8 shrink-0`}>
                       <channel.icon className="h-6 w-6" />
                     </div>
-                    <div>
-                      <h3 className="text-xs font-black uppercase tracking-widest text-muted-foreground mb-2">{channel.title}</h3>
-                      <p className="text-xl font-bold text-primary tracking-tight group-hover:text-secondary transition-colors">{channel.value}</p>
+                    <div className="flex-1 flex flex-col justify-end">
+                      <h3 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2">{channel.title}</h3>
+                      <p className="text-xl font-bold text-primary tracking-tight group-hover:text-secondary transition-colors break-words">{channel.value}</p>
                     </div>
                   </motion.a>
                 ))}
