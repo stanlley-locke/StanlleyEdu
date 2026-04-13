@@ -56,11 +56,11 @@ export function PublicLayout({ children }: { children: ReactNode }) {
                 <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Programs</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
-              <Link href="/#mentor" className="relative group py-2">
+              <Link href="/mentor" className="relative group py-2">
                 <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Mentor</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
-              <Link href="/#connect" className="relative group py-2">
+              <Link href="/connect" className="relative group py-2">
                 <span className="text-sm font-semibold text-white group-hover:text-secondary transition-colors italic uppercase tracking-widest">Connect</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
@@ -100,8 +100,8 @@ export function PublicLayout({ children }: { children: ReactNode }) {
             <div className="md:hidden absolute top-[calc(100%+12px)] left-0 w-full bg-background/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 space-y-4 animate-in slide-in-from-top-4 duration-500 overflow-hidden shadow-2xl">
               <nav className="flex flex-col gap-2">
                 <Link href="/courses" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Programs</Link>
-                <Link href="/#mentor" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Mentor</Link>
-                <Link href="/#connect" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Connect</Link>
+                <Link href="/mentor" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Mentor</Link>
+                <Link href="/connect" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold p-4 hover:bg-white/5 rounded-2xl transition-colors">Connect</Link>
               </nav>
             </div>
           )}
@@ -144,10 +144,9 @@ export function PublicLayout({ children }: { children: ReactNode }) {
             <div>
               <h4 className="font-bold text-sm uppercase tracking-wider mb-6">Programs</h4>
               <ul className="space-y-4">
-                <li><Link href="/courses/full-stack" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-2 transition-colors"><ChevronRight className="h-3 w-3" /> Full-Stack Web Dev</Link></li>
-                <li><Link href="/courses/ai-ml" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-2 transition-colors"><ChevronRight className="h-3 w-3" /> AI & Machine Learning</Link></li>
-                <li><Link href="/courses/devops" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-2 transition-colors"><ChevronRight className="h-3 w-3" /> DevOps & Cloud</Link></li>
-                <li><Link href="/courses/python" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-2 transition-colors"><ChevronRight className="h-3 w-3" /> Python Engineering</Link></li>
+                <li><Link href="/courses" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-2 transition-colors"><ChevronRight className="h-3 w-3" /> All Programs</Link></li>
+                <li><Link href="/mentor" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-2 transition-colors"><ChevronRight className="h-3 w-3" /> Meet Mentor</Link></li>
+                <li><Link href="/connect" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-2 transition-colors"><ChevronRight className="h-3 w-3" /> Support Hub</Link></li>
               </ul>
             </div>
 

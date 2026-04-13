@@ -12,7 +12,8 @@ import {
   Cpu, 
   Download,
   ExternalLink,
-  Users
+  Users,
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PublicLayout } from "@/components/layout/PublicLayout";
@@ -205,81 +206,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Meet Your Mentor - Refined Standout Section */}
-      <section id="mentor" className="relative min-h-screen flex flex-col justify-center py-40 bg-[#FAFAFA] border-y border-black/5 overflow-hidden">
-        <div className="container mx-auto px-4 relative max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <div className="space-y-16">
-              <div className="relative">
-                <div className="h-2 w-20 bg-secondary mb-10 rounded-full" />
-                <h2 className="text-xs font-black uppercase tracking-[0.5em] text-secondary mb-6">Lead Architect</h2>
-                <h3 className="text-6xl lg:text-8xl font-bold text-primary tracking-tighter leading-tight">Stanlley Locke</h3>
-                <div className="flex flex-wrap gap-3 pt-6">
-                  {["System Architect", "Full-Stack Engineer", "AI Builder"].map(role => (
-                    <span key={role} className="px-4 py-1 border border-primary/10 rounded-full text-[10px] font-black uppercase text-primary/60 tracking-widest bg-white">{role}</span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="space-y-10 text-2xl text-muted-foreground leading-relaxed font-semibold max-w-xl">
-                <p>
-                  Specializing in <span className="text-primary decoration-secondary/30">production-grade architecture</span>, developer tooling, and custom AI frameworks.
+      {/* Engineering Ecosystem - Navigation Hub */}
+      <section className="py-40 bg-[#FAFAFA] border-y border-black/5 overflow-hidden">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex flex-col lg:flex-row gap-12">
+            {/* Mentor Redirect Card */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="lg:w-1/2 group relative bg-white border border-black/10 rounded-[4rem] p-16 overflow-hidden shadow-sm hover:border-secondary transition-all duration-500"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 blur-[100px] group-hover:bg-secondary/15 transition-all" />
+              <div className="relative z-10 space-y-10">
+                <span className="text-xs font-black uppercase tracking-[0.5em] text-secondary">Leadership</span>
+                <h3 className="text-6xl font-black text-primary tracking-tighter leading-none">Meet Your <br/><span className="text-secondary italic">Mentor.</span></h3>
+                <p className="text-xl text-muted-foreground font-bold leading-relaxed max-w-md">
+                  Explore Stanlley Locke's engineering philosophy, portfolio of artifacts, and professional architecture background.
                 </p>
-                <p>
-                  I bridge the gap between academic theory and <span className="text-primary decoration-secondary/30">deployable engineering solutions</span> that scale.
-                </p>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-10 bg-white p-10 rounded-[3rem] border border-black/5 shadow-sm">
-                {[
-                  { id: "dev", icon: Terminal, title: "Senior Dev", desc: "Flask, Node.js, React, & DevOps" },
-                  { id: "ai", icon: Brain, title: "AI Builder", desc: "Custom Neural pipes & GPU tuning" }
-                ].map((skill) => (
-                  <div key={skill.id} className="space-y-4">
-                    <div className="h-14 w-14 rounded-2xl bg-primary/5 flex items-center justify-center border border-black/5">
-                      <skill.icon className="h-7 w-7 text-primary" />
-                    </div>
-                    <h4 className="font-black text-primary uppercase tracking-widest text-xs">{skill.title}</h4>
-                    <p className="text-sm text-muted-foreground font-bold leading-snug">{skill.desc}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-6 pt-4">
-                <Button asChild size="lg" className="rounded-full px-12 bg-primary hover:bg-primary/95 text-white font-black h-20 shadow-2xl shadow-primary/30 transition-all hover:scale-105 uppercase tracking-widest">
-                  <a href="https://linkedin.com/in/stanlley-locke-6ba090380" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full px-12 border-primary/20 hover:bg-primary/[0.04] font-black h-20 transition-all hover:scale-105 uppercase tracking-widest">
-                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+                <Button asChild size="lg" className="rounded-full px-10 bg-primary text-white font-black h-20 uppercase tracking-widest shadow-2xl shadow-primary/20 group-hover:scale-105 transition-all">
+                  <Link href="/mentor">Enter Profile <ArrowRight className="ml-3 h-5 w-5" /></Link>
                 </Button>
               </div>
-            </div>
-            
-            <div className="space-y-8">
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-secondary mb-10 block text-center lg:text-left">Engineering Artifacts</span>
-              {[
-                { title: "StanleyHub", desc: "Enterprise learning ecosystems with realtime Socket.IO integration and scalable SQLite architecture.", tags: ["Node.js", "Socket.IO", "SQLite"] },
-                { title: "NeuralNetV2", desc: "Sophisticated neural training framework supporting GPU-accelerated reproducible experiments.", tags: ["Python", "PyTorch", "GPU"] },
-                { title: "Coinium", desc: "Realtime blockchain simulation engine with integrated Telegram automation.", tags: ["Blockchain", "Telegram API"] },
-              ].map((project, i) => (
-                <div 
-                  key={i} 
-                  className="group bg-white border border-black/10 rounded-[2.5rem] p-10 hover:border-secondary transition-all duration-500 shadow-sm relative overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 blur-[60px] group-hover:bg-secondary/20 transition-all" />
-                  <div className="flex justify-between items-start mb-4">
-                    <h5 className="text-3xl font-bold text-primary group-hover:text-secondary transition-colors tracking-tighter">{project.title}</h5>
-                    <ExternalLink className="h-5 w-5 text-secondary opacity-0 group-hover:opacity-100 transition-all" />
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed font-bold text-lg mb-8">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="text-[9px] font-black px-3 py-1 bg-primary/5 rounded-full uppercase text-primary/60 tracking-widest">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            </motion.div>
+
+            {/* Connect Redirect Card */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="lg:w-1/2 group relative bg-primary border border-white/5 rounded-[4rem] p-16 overflow-hidden shadow-2xl transition-all duration-500"
+            >
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 blur-[100px] group-hover:bg-secondary/20 transition-all" />
+              <div className="relative z-10 space-y-10">
+                <span className="text-xs font-black uppercase tracking-[0.5em] text-secondary">Network</span>
+                <h3 className="text-6xl font-black text-white tracking-tighter leading-none">Connect with <br/><span className="text-secondary italic">Architects.</span></h3>
+                <p className="text-xl text-white/60 font-bold leading-relaxed max-w-md">
+                  Have technical queries? Join our global engineering community or reach out directly for enrollment support.
+                </p>
+                <Button asChild size="lg" className="rounded-full px-10 bg-secondary text-secondary-foreground font-black h-20 uppercase tracking-widest shadow-2xl shadow-secondary/20 group-hover:scale-105 transition-all">
+                  <Link href="/connect">Join Community <ArrowRight className="ml-3 h-5 w-5" /></Link>
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -10,6 +10,8 @@ import Courses from "@/pages/Courses";
 import CourseDetail from "@/pages/CourseDetail";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import Mentor from "@/pages/Mentor";
+import Connect from "@/pages/Connect";
 
 // Student Pages
 import StudentDashboard from "@/pages/student/Dashboard";
@@ -61,6 +63,8 @@ function Router() {
       <Route path="/courses/:id" component={CourseDetail} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/mentor" component={Mentor} />
+      <Route path="/connect" component={Connect} />
 
       {/* Student Portal */}
       <Route path="/student/dashboard">
